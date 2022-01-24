@@ -1,4 +1,4 @@
-//© A+ Computer Science
+//ï¿½ A+ Computer Science
 //www.apluscompsci.com
 
 //Name -
@@ -35,14 +35,22 @@ public class StarsAndStripes extends StarsRunner
    
    public void printASmallBox()
    {	
-	   out.println("_____");
+	   out.println(" _______");
 	   out.println("|\t|");
 	   out.println("|\t|");
 	   out.println("|\t|");
-	   out.println("_____");
+	   out.println("|_______|");
    }
  
    public void printABigBox()
-   { 	
+   { 		
+	   out.println(" _______________");
+	   out.println("|\t\t|");
+	   out.println("|\t\t|");
+	   out.println("|\t\t|");
+	   out.println("|\t\t|");
+	   out.println("|\t\t|");
+	   out.println("|\t\t|");
+	   out.println("|_______________|");
    }   
 }

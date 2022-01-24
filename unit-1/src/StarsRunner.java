@@ -1,4 +1,4 @@
-//© A+ Computer Science
+//ï¿½ A+ Computer Science
 //www.apluscompsci.com
 
 //Name -
@@ -12,5 +12,6 @@ public class StarsRunner{
 		one.printTwentyStars();
 		one.printTwentyDashes();
 		one.printASmallBox();
+		one.printABigBox();
 	}
 }
