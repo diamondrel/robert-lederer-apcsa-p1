@@ -9,7 +9,7 @@
 
 import static java.lang.System.*;
 
-public class StarsAndStripes extends StarsRunner
+public class StarsAndStripes
 {
    public void starsAndStripes()
    {
