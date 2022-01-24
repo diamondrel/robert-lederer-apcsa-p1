@@ -6,11 +6,12 @@
 //Class -
 //Lab  -
 
+
 import static java.lang.System.*;
 
-public class StarsAndStripes
+public class StarsAndStripes extends StarsRunner
 {
-   public StarsAndStripes()
+   public void starsAndStripes()
    {
       out.println("StarsAndStripes");
       printTwoBlankLines();

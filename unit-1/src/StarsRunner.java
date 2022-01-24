@@ -5,12 +5,12 @@
 //Date -
 //Class -
 //Lab  -
-
-import static java.lang.System.*;
-
-public class StarsRunner
-{
-   public static void main(String args[])
-   {
-   }
+public class StarsRunner{
+	public static void main(String[] args) {
+		StarsAndStripes one = new StarsAndStripes();
+		one.starsAndStripes();
+		one.printTwentyStars();
+		one.printTwentyDashes();
+		one.printASmallBox();
+	}
 }
