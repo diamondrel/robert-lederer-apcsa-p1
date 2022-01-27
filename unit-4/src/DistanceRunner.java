@@ -28,7 +28,7 @@ public class DistanceRunner
 		Distance test = new Distance();
 		test.setCoordinates(xOne, yOne, xTwo, yTwo);
 		out.println(test.determineClosest());
-		
+		out.println(test);
 		//add more test cases
 	}
 }
