@@ -23,16 +23,25 @@ public class StringOddOrEven
 
 	public void setString(String s)
 	{
+		word = s;
 	}
 
  	public boolean isEven()
  	{
-		return false;
+		if (word.length()%2==1) {
+			return false;
+		}
+		return true;
+		
 	}
 
  	public String toString()
  	{
- 		String output="";
+ 		if (isEven()) {
+ 			String output=""+word+" is even";
+ 			return output;
+ 		}
+ 		String output=""+word+" is odd";
  		return output;
-	}
+ 	}
 }
