@@ -17,28 +17,33 @@ public class WordsCompare
 	{
 	}
 
-	public WordsCompare(String one, String two)
+	public int WordsCompare(String one, String two)
 	{
+		return one.compareToIgnoreCase(two);
 	}
 
 	public void setWords(String one, String two)
 	{
-
+		wordOne = one;
+		wordTwo = two;
 	}
 
 	public void compare()
 	{
+		compare = WordsCompare(wordOne, wordTwo);
 	}
 
 	public String toString()
 	{
-		if(compare<0)
+		
+		if(compare < 0)
 		{
 			return wordOne + " should be placed before " + wordTwo + "\n";
 		}
-		else
+		else if(compare > 0)
 		{
 			return wordOne + " should be placed after " + wordTwo + "\n";
 		}
+		return wordOne + " and " + wordTwo + " are the same \n";
 	}
 }
