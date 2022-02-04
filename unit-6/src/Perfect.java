@@ -7,6 +7,7 @@ import static java.lang.System.*;
 public class Perfect
 {
    private int number;
+   private int total;
    private String s;
 
 	public Perfect() {
@@ -23,8 +24,13 @@ public class Perfect
 
 	public boolean isPerfect()
 	{
-		for (int i=0;i<Math.sqrt(number);i++) {
-			if(i!=0&&number%i == 0&&((number/i)+i)==number) {
+		total = 0;
+		for (int i=1;i<=Math.ceil(number/2);i++) {
+			if (number%i==0) {
+				total+=i;
+				System.out.println(total);
+			}
+			if(total==number) {
 				return true;
 			}
 		}

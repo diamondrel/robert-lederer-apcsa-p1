@@ -19,6 +19,6 @@ public class CountPairsRunner
 		System.out.println( CountPairs.pairCounter("aabbccdogcatpig") );
 		System.out.println( CountPairs.pairCounter("aaaa") );
 		System.out.println( CountPairs.pairCounter("AAAAAAAAA") );
-		//add in all of the provided test cases from the lab handout	
+		//add in all of the provided test cases from the lab hand out	
 	}
 }
