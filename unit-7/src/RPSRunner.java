@@ -18,9 +18,11 @@ public class RPSRunner
 		
 			out.print("type in your prompt [R,P,S] :: ");
 			
-			//read in the player value
+			response = keyboard.next().charAt(0);
 		
-			RockPaperScissors game = new RockPaperScissors();		
+			RockPaperScissors game = new RockPaperScissors();	
+			game.setPlayers(response);
+			System.out.println(game.determineWinner());
 	}
 }
 
