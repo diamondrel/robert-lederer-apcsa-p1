@@ -33,7 +33,7 @@ public class RockPaperScissors
 				playVar = keyboard.next().charAt(0);
 			}
 		}
-		int x = (int)Math.floor(Math.random()*3);
+		int x = (int)Math.floor(Math.random()*2);
 		if(x == 0) {
 			compChoice = 'R';
 		}
@@ -54,15 +54,16 @@ public class RockPaperScissors
 		if ((playChoice == 'R' &&compChoice == 'R')||(playChoice == 'P'&&compChoice=='P')||(playChoice == 'S'&&compChoice=='S')) {
 			winner = "Draw!";
 		}
-		if ((playChoice == 'R' &&compChoice == 'P')||(playChoice == 'P' &&compChoice == 'S')||(playChoice == 'S' &&compChoice == 'R')) {
+		else if ((playChoice == 'R' &&compChoice == 'P')||(playChoice == 'P' &&compChoice == 'S')||(playChoice == 'S' &&compChoice == 'R')) {
 			winner = "Computer wins!";
 		}
-		if ((playChoice == 'R' &&compChoice == 'S')||(playChoice == 'P' &&compChoice == 'R')||(playChoice == 'S' &&compChoice == 'P')) {
+		else if ((playChoice == 'R' &&compChoice == 'S')||(playChoice == 'P' &&compChoice == 'R')||(playChoice == 'S' &&compChoice == 'P')) {
 			winner = "Player wins!";
 		}
 		else {
 			winner = "Error Code Walnut: No Outcome";
 		}
+		out.println("The Computer Chose "+compChoice);
 		return winner;
 	}
 
