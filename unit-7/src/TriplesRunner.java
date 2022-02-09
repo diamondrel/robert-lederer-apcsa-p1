@@ -9,6 +9,7 @@ public class TriplesRunner
    public static void main(String args[])
 	{
 	   Triples run = new Triples();
-	   
+	   run.setNum(111);
+	   System.out.println(run);
 	}
 }
