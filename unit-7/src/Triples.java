@@ -37,6 +37,7 @@ public class Triples
 	
 	private String greatestCommonFactor(int a, int b, int c)
 	{
+		String str = "";
 		int max = 0;
 		if(a>b&&a>c) {
 			max = a;
@@ -47,13 +48,12 @@ public class Triples
 		else {
 			max = c;
 		}
-		out.println(max);
 		for (int j=(int)(max/2); j>0; j--) {
 			if((a%j==0)&&(b%j==0)&&(c%j==0)) {
-				return a+" "+b+" "+c;
+				str+=" "+a+" "+b+" "+c;
 			}
 		}
-		return "";
+		return str;
 	}
 
 	public String toString()

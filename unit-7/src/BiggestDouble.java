@@ -6,12 +6,12 @@ import static java.lang.System.*;
 
 public class BiggestDouble
 {
-	private double one,two,three,four;
 
 	public BiggestDouble()
 	{
 		this(0,0,0,0);
 	}
+	private double one,two,three,four;
 
 	public BiggestDouble(double a, double b, double c, double d)
 	{
