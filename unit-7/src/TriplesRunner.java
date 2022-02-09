@@ -9,6 +9,6 @@ public class TriplesRunner
    public static void main(String args[])
 	{
 	   Triples run = new Triples();
-	   System.out.println(run.greatestCommonFactor(13,12,24));
+	   
 	}
 }
