@@ -6,14 +6,14 @@
 public class Card {
 
 	/**
-	 * String value that holds the suit of the card
-	 */
-	private String suit;
-
-	/**
 	 * String value that holds the rank of the card
 	 */
 	private String rank;
+	
+	/**
+	 * String value that holds the suit of the card
+	 */
+	private String suit;
 
 	/**
 	 * int value that holds the point value.
@@ -32,7 +32,17 @@ public class Card {
 	 *                  containing the point value of the card
 	 */
 	public Card(String cardRank, String cardSuit, int cardPointValue) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		rank = cardRank;
+		suit = cardSuit;
+		pointValue=cardPointValue;
+	}
+
+	/**
+	 * Accesses this <code>Card's</code> rank.
+	 * @return this <code>Card's</code> rank.
+	 */
+	public String rank() {
+		return rank;
 	}
 
 
@@ -41,23 +51,15 @@ public class Card {
 	 * @return this <code>Card's</code> suit.
 	 */
 	public String suit() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		return suit;
    }
-
-	/**
-	 * Accesses this <code>Card's</code> rank.
-	 * @return this <code>Card's</code> rank.
-	 */
-	public String rank() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
-	}
 
    /**
 	 * Accesses this <code>Card's</code> point value.
 	 * @return this <code>Card's</code> point value.
 	 */
 	public int pointValue() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		return pointValue;
 	}
 
 	/** Compare this card with the argument.
@@ -67,7 +69,10 @@ public class Card {
 	 *         false otherwise.
 	 */
 	public boolean matches(Card otherCard) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		if(this.rank().equals(otherCard.rank())&&this.suit().equals(otherCard.suit())&&this.pointValue()==otherCard.pointValue()) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
@@ -82,6 +87,6 @@ public class Card {
 	 */
 	@Override
 	public String toString() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 1 *** */
+		System.out.println(this.rank()+" of "+this.suit()+" (point value = "+this.pointValue()+")";
 	}
 }
