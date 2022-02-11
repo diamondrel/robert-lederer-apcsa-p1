@@ -30,7 +30,16 @@ public class Deck {
 	 * @param values is an array containing all of the card point values.
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		cards = new ArrayList<Card>();
+		for (String i:suits) {
+			int k = 0;
+			for (String j:ranks) {
+				Card currentCard = new Card(j,i,values[k]);
+				cards.add(currentCard);
+				k++;
+			}
+		}
+		System.out.println(cards);
 	}
 
 
@@ -64,7 +73,7 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		private Card 
 	}
 
 	/**
