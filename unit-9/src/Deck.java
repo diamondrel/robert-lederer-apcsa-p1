@@ -39,7 +39,10 @@ public class Deck {
 				k++;
 			}
 		}
-		System.out.println(cards);
+	}
+	
+	public List<Card> cardReturn(){
+		return cards;
 	}
 
 
@@ -64,7 +67,12 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		for (int k=cards.size(); k>0;k--) {
+			int r = (int) Math.random()*k;
+			Card cardsCurrent = cards.get(k);
+			cards.set(k, cards.get(r));
+			cards.set(r, cardsCurrent);
+		}
 	}
 
 	/**

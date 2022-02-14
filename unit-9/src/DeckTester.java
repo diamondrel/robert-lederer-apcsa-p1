@@ -13,5 +13,7 @@ public class DeckTester {
 		int values[]= {1,2,6};
 		Deck runner = new Deck(ranks,suits,values); 
 		System.out.println(runner.toString());
+		Shuffler shuffle = new Shuffler();
+		shuffle.main(args);
 	}
 }
