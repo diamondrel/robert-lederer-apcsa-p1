@@ -8,6 +8,7 @@ import java.util.ArrayList;
  */
 public class Deck {
 
+	private int dealAmount = 10;
 	/**
 	 * cards contains all the cards in the deck.
 	 */
@@ -39,6 +40,8 @@ public class Deck {
 				k++;
 			}
 		}
+		size=cards.size();
+		shuffle();
 	}
 	
 	public List<Card> cardReturn(){
@@ -51,15 +54,15 @@ public class Deck {
 	 * @return true if this deck is empty, false otherwise.
 	 */
 	public boolean isEmpty() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		return size==0;
 	}
 
 	/**
 	 * Accesses the number of undealt cards in this deck.
 	 * @return the number of undealt cards in this deck.
 	 */
-	public int size() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+	public void size() {
+		size = cards.size();
 	}
 
 	/**
@@ -67,8 +70,9 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		for (int k=cards.size(); k>0;k--) {
-			int r = (int) Math.random()*k;
+		for (int k=cards.size()-1; k>0;k--) {
+			int r = (int) (Math.random()*k);
+			System.out.println(r);
 			Card cardsCurrent = cards.get(k);
 			cards.set(k, cards.get(r));
 			cards.set(r, cardsCurrent);
@@ -81,7 +85,12 @@ public class Deck {
 	 *         previously dealt.
 	 */
 	public Card deal() {
-		private Card 
+		if (!isEmpty()) {
+			size--;
+			Card topDeck = cards.get(size);
+			return topDeck;
+		}
+		return null;
 	}
 
 	/**
@@ -90,32 +99,26 @@ public class Deck {
 	 */
 	@Override
 	public String toString() {
-		String rtn = "size = " + size + "\nUndealt cards: \n";
+		String rtn = "size = " + size + "\n\nUndealt cards: \n\n";
 
 		for (int k = size - 1; k >= 0; k--) {
 			rtn = rtn + cards.get(k);
 			if (k != 0) {
-				rtn = rtn + ", ";
+				rtn = rtn + "\n";
 			}
 			if ((size - k) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
-				rtn = rtn + "\n";
+//				rtn = rtn + "\n";
 			}
 		}
-
-		rtn = rtn + "\nDealt cards: \n";
-		for (int k = cards.size() - 1; k >= size; k--) {
-			rtn = rtn + cards.get(k);
-			if (k != size) {
-				rtn = rtn + ", ";
-			}
-			if ((k - cards.size()) % 2 == 0) {
-				// Insert carriage returns so entire deck is visible on console.
-				rtn = rtn + "\n";
-			}
+		shuffle();
+		
+		rtn = rtn + "\n\nDealt cards: \n\n";
+		for (int i = 0; i<dealAmount;i++) {
+			rtn = rtn + deal();
+			rtn = rtn + "\n"; 
 		}
-
-		rtn = rtn + "\n";
+		
 		return rtn;
 	}
 }

@@ -80,7 +80,7 @@ public class Shuffler {
 	public static int[] selectionShuffle(int[] values) {
 		int[] valueSetter = values;
 		for (int o=valueSetter.length; o>0;o--) {
-			int r = (int) Math.random()*o;
+			int r = (int) (Math.random()*o);
 			int cardsCurrent = valueSetter[o-1];
 			valueSetter[o-1]=valueSetter[r];
 			valueSetter[r]=cardsCurrent;

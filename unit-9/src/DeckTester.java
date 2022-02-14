@@ -8,12 +8,10 @@ public class DeckTester {
 	 *	@param args is not used.
 	 */
 	public static void main(String[] args) {
-		String suits[] = {"Giraffes","Lions"};
-		String ranks[] = {"A", "B", "C"};
-		int values[]= {1,2,6};
+		String suits[] = {"Diamonds","Clubs","Spades","Hearts"};
+		String ranks[] = {"Ace", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"};
+		int values[]= {14,1,2,3,4,5,6,7,8,9,10,11,12,13};
 		Deck runner = new Deck(ranks,suits,values); 
 		System.out.println(runner.toString());
-		Shuffler shuffle = new Shuffler();
-		shuffle.main(args);
 	}
 }
