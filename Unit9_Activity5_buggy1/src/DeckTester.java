@@ -24,7 +24,9 @@ public class DeckTester {
 		String[] s1 = {"spades"};
 		int[] v1 = {1};
 		Deck d = new Deck(r1, s1, v1);
+		System.out.println(d);
 		testOneCard(d, new Card("ace", "spades", 1));
+		System.out.println(d);
 		testEmpty(d);
 
 		d.shuffle();
@@ -93,10 +95,10 @@ public class DeckTester {
 	 * @param d is a deck that should be empty.
 	 */
 	private static void testEmpty(Deck d) {
+		System.out.println(d);
 		assert d.size() == 0 :  "Size for an empty deck is " + d.size()
 			+ ". It should be 0.";
 		assert d.isEmpty() : "isEmpty is false for an empty deck.";
-		
 		Card c = d.deal();
 		assert c == null : "Dealt card is " + c
 			+ ". It should be null for an empty deck.";
@@ -108,6 +110,7 @@ public class DeckTester {
 	 * @param intended is the card that the one-card deck should contain.
 	 */
 	private static void testOneCard(Deck d, Card intended) {
+		System.out.println(d);
 		assert d.size() == 1 : "Size is " + d.size()
 			+ ". It should be 1 for a 1-card deck.";
 		assert !d.isEmpty() : "isEmpty true for a 1-card deck.";
