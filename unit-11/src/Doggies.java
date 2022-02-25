@@ -25,6 +25,7 @@ public class Doggies
 		for (Dog i : pups) {
 			if (i.getAge()<min) {
 				minObj = i;
+				min = i.getAge();
 			}
 		}
 		return minObj.getName();
@@ -35,8 +36,9 @@ public class Doggies
 		Dog maxObj = null;
 		int max = Integer.MIN_VALUE;
 		for (Dog i : pups) {
-			if (i.getAge()<max) {
+			if (i.getAge()>max) {
 				maxObj = i;
+				max = i.getAge();
 			}
 		}
 		return maxObj.getName();
