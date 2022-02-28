@@ -4,7 +4,7 @@
 
 import static java.lang.System.*;
 
-public class Toy
+public class Toy implements Comparable<Toy>
 {
 	private String name;
 	private int count = 1;
@@ -15,17 +15,20 @@ public class Toy
 
 	public Toy( String nm )
 	{
-		
+		setName(nm);
 	}
 	
 	public int getCount()
 	{
-		return count;
+		return this.count;
 	}
 	
 	public void setCount( int cnt )
 	{
-		count=cnt;
+		if (cnt < 0)
+			count++;
+		else
+			count=cnt;
 	}
 	
 	public String getName()
@@ -33,16 +36,28 @@ public class Toy
 		if (name==null) {
 			return "";
 		}
-		return name;
+		return this.name;
 	}
 	
 	public void setName( String nm )
 	{
 		name=nm;
 	}
+	
+	@Override public int compareTo(Toy comparestu)
+    {
+        int compareage
+            = ((Toy)comparestu).getCount();
+  
+        //  For Ascending order
+        return this.count - compareage;
+  
+        // For Descending order do like this
+        // return compareage-this.studentage;
+    }
 
 	public String toString()
 	{
-	   return "";
+	   return this.name + " " + this.count;
 	}
 }

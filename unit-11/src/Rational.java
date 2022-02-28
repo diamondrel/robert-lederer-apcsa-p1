@@ -2,38 +2,63 @@
 //www.apluscompsci.com
 //Name -
 
-import static java.lang.System.*; 
+import static java.lang.System.*;
+
+import javax.print.attribute.standard.MediaSize.Other; 
 
 class Rational implements Comparable<Rational>
 {
-	//add two instance variables
+	int num, den;
 
-	//write two constructors
+	//CONSTRUCTORS
+	public Rational() {
+		setNum(1);
+		setDen(1);
+	}
+	public Rational(int n, int d) {
+		setNum(n);
+		setDen(d);
+	}
+	//---
 
-
-	//write a setRational method
+	public void setRational(int n, int d) {
+		setNum(n);
+		setDen(d);
+	}
 	
-
-	//write  a set method for numerator and denominator
-
+	//SET INTS
+	public void setNum(int n) {
+		num = n;
+	}
+	
+	public void setDen(int d) {
+		den = d;
+	}
+	//---
 	
 	public void add(Rational  other)
 	{
-		//num1/den1 + num2/den2 
-		//new numerator = (num1 * den2 + num2 * den1)
-		//new denominator = (den1 * den2)
+		num = (num * other.getDen() + other.getNum() * den);
+		den = (den * other.getDen());
 		
-		
-
-
 		reduce();
 	}
 
 	private void reduce()
 	{
-
-
-
+		int i =0;
+		if (num>den) {
+			i=num;
+		}
+		else {
+			i = den;
+		}
+		for (;i>0;i--) {
+			if (num%i==0&&den%i==0) {
+				num/=i;
+				den/=i;
+			}
+		}
 	}
 
 	private int gcd(int numOne, int numTwo)
@@ -45,33 +70,35 @@ class Rational implements Comparable<Rational>
 
 	public Object clone ()
 	{
-		return "";
+		return new Rational(num,den);
 	}
 
-
 	//ACCESSORS
-
-	//write get methods for numerator and denominator
+	public int getDen() {
+		return den;
+	}
 	
+	public int getNum() {
+		return num;
+	}
+	//---
 	
-	public boolean equals( Object obj)
+	public boolean equals(Rational other)
 	{
-
-
+		other.reduce();
+		reduce();
+		if (other.getNum()==num&&other.getDen()==den) {
+			return true;
+		}
 		return false;
 	}
 
 	public int compareTo(Rational other)
 	{
-
-
-		return -1;
+		return (num-other.getNum());
 	}
-
-
-
-	
-	//write  toString() method
-	
+	public String toString() {
+		return num+"/"+den;
+	}
 	
 }
