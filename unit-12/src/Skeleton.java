@@ -47,22 +47,14 @@ public class Skeleton implements Monster
 	}
 	
 	public boolean namesTheSame(Monster other) {
-		if (other.getName()==name) {
+		if (other.getName().equals(name)) {
 			return true;
 		}
 		return false;
 	}
 
-	public String toString(Monster other) {
-		String text="Monster 1 - "+name+" - "+size+"\n"+"Monster 2 - "+other.getName()+" - "+other.getHowBig()+"\n\n";
-		if (isSmallerThan(other)) 
-			text+="Monster 1 is smaller than Monster 2";
-		else 
-			text+="Monster 1 is bigger than Monster 2";
-		if (namesTheSame(other)) 
-			text+="Monster 1 has the same name as Monster 2";
-		else 
-			text+="Monster 1 does not have the same name as Monster 2";
+	public String toString() {
+		String text=name+" - size "+size;
 		return text;
 	}
 }
