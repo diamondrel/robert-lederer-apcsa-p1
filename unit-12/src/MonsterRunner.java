@@ -61,6 +61,7 @@ public class MonsterRunner
 		System.out.print("Monster 1 - ");
 		System.out.println(one);
 		System.out.print("Monster 2 - ");
+		// add the monster types to their prints
 		System.out.println(two);
 		String callO;
 		String callT;
