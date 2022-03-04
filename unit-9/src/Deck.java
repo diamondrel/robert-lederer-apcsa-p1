@@ -61,8 +61,9 @@ public class Deck {
 	 * Accesses the number of undealt cards in this deck.
 	 * @return the number of undealt cards in this deck.
 	 */
-	public void size() {
+	public int size() {
 		size = cards.size();
+		return size;
 	}
 
 	/**
