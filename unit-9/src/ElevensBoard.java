@@ -5,7 +5,10 @@ import java.util.ArrayList;
  * The ElevensBoard class represents the board in a game of Elevens.
  */
 public class ElevensBoard extends Board {
-
+	int goalNum = 11;
+	String[] jqk = {"jack","queen","king"};
+	String[] sss = {"spades","spades","spades"};
+	//(new Card("jack","spades",0));
 	/**
 	 * The size (number of cards) on the board.
 	 */
@@ -39,7 +42,9 @@ public class ElevensBoard extends Board {
 	 * Creates a new <code>ElevensBoard</code> instance.
 	 */
 	 public ElevensBoard() {
-	 	super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+//		 	super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+	 	super(3, new String[]{"jack","queen","king"}, new String[]{"spades","spades","spades"}, POINT_VALUES);
+	 	
 	 }
 
 	/**
@@ -53,7 +58,19 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		if (selectedCards.size()==2) {
+			if (this.cardAt(selectedCards.get(0)).pointValue()+this.cardAt(selectedCards.get(1)).pointValue()==goalNum) {
+				return true;
+			}
+		}
+		else if (selectedCards.size()==3) {
+			for (int i = 0; i<3;i++) {
+				if(this.cardAt(selectedCards.get(i)).rank()=="King"&&this.cardAt(selectedCards.get((i+1)%3)).rank()=="Queen"&&this.cardAt(selectedCards.get((i+2)%3)).rank()=="Jack") {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -66,7 +83,7 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		return false;
 	}
 
 	/**
@@ -78,7 +95,7 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		return false;
 	}
 
 	/**
@@ -90,6 +107,6 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
+		return false;
 	}
 }
