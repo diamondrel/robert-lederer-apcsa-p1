@@ -13,13 +13,13 @@ public class ElevensGUIRunner {
 	 */
 	public static void main(String[] args) {
 		Board board = new ElevensBoard();
-//		CardGameGUI gui = new CardGameGUI(board);
-//		gui.displayGame();
-		List<Integer> selCards = new ArrayList<>();
-		selCards.add(0);
-		selCards.add(1);
-		selCards.add(2);
-		System.out.println(board.isLegal(selCards));
-		System.out.println(selCards);
+		CardGameGUI gui = new CardGameGUI(board);
+		gui.displayGame();
+//		List<Integer> selCards = new ArrayList<>();
+//		selCards.add(0);
+//		selCards.add(1);
+//		selCards.add(2);
+//		System.out.println(board.isLegal(selCards));
+//		System.out.println(selCards);
 	}
 }

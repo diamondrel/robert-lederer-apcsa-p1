@@ -6,9 +6,6 @@ import java.util.ArrayList;
  */
 public class ElevensBoard extends Board {
 	int goalNum = 11;
-	String[] jqk = {"jack","queen","king"};
-	String[] sss = {"spades","spades","spades"};
-	//(new Card("jack","spades",0));
 	/**
 	 * The size (number of cards) on the board.
 	 */
@@ -42,9 +39,8 @@ public class ElevensBoard extends Board {
 	 * Creates a new <code>ElevensBoard</code> instance.
 	 */
 	 public ElevensBoard() {
-//		 	super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
-	 	super(3, new String[]{"jack","queen","king"}, new String[]{"spades","spades","spades"}, POINT_VALUES);
-	 	
+		super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+//	 	super(3, new String[]{"king","queen","jack"}, new String[]{"spades","spades","spades"}, POINT_VALUES);
 	 }
 
 	/**
@@ -59,16 +55,10 @@ public class ElevensBoard extends Board {
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
 		if (selectedCards.size()==2) {
-			if (this.cardAt(selectedCards.get(0)).pointValue()+this.cardAt(selectedCards.get(1)).pointValue()==goalNum) {
-				return true;
-			}
+			return containsPairSum11(selectedCards);
 		}
-		else if (selectedCards.size()==3) {
-			for (int i = 0; i<3;i++) {
-				if(this.cardAt(selectedCards.get(i)).rank()=="King"&&this.cardAt(selectedCards.get((i+1)%3)).rank()=="Queen"&&this.cardAt(selectedCards.get((i+2)%3)).rank()=="Jack") {
-					return true;
-				}
-			}
+		if (selectedCards.size()==3) {
+			return containsJQK(selectedCards);
 		}
 		return false;
 	}
@@ -83,7 +73,8 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean anotherPlayIsPossible() {
-		return false;
+		List<Integer> cIndexes = cardIndexes();
+		return containsPairSum11(cIndexes) || containsJQK(cIndexes);
 	}
 
 	/**
@@ -95,6 +86,9 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
+		if (this.cardAt(selectedCards.get(0)).pointValue()+this.cardAt(selectedCards.get(1)).pointValue()==goalNum) {
+			return true;
+		}
 		return false;
 	}
 
@@ -107,6 +101,14 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
+		// doesnt work with any amount of cards yet
+		for (int i = 0; i<3;i++) {
+			if(this.cardAt(selectedCards.get(i)).rank()=="king"&&this.cardAt(selectedCards.get((i+1)%3)).rank()=="queen"&&this.cardAt(selectedCards.get((i+2)%3)).rank()=="jack") {
+				return true;
+			}
+			else System.out.println(this.cardAt(selectedCards.get(i)).rank());
+		}
+		System.out.println("\n");
 		return false;
 	}
 }
