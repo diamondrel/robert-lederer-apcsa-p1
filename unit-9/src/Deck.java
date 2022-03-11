@@ -13,6 +13,7 @@ public class Deck {
 	 * cards contains all the cards in the deck.
 	 */
 	private List<Card> cards;
+	private List<Card> cardBase;
 
 	/**
 	 * size is the number of not-yet-dealt cards.
@@ -40,6 +41,8 @@ public class Deck {
 				k++;
 			}
 		}
+		cardBase=cards;
+		System.out.println(cardBase.equals(cards));
 		size=cards.size();
 		shuffle();
 	}
@@ -71,13 +74,15 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		for (int k=cards.size()-1; k>0;k--) {
+		cards=cardBase;
+		for (int k=size()-1; k>0;k--) {
 			int r = (int) (Math.random()*k);
-			System.out.println(r);
+			System.out.println("random is "+r);
 			Card cardsCurrent = cards.get(k);
 			cards.set(k, cards.get(r));
 			cards.set(r, cardsCurrent);
 		}
+		size();
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class Deck {
 		if (!isEmpty()) {
 			size--;
 			Card topDeck = cards.get(size);
+			cards.remove(size);
 			return topDeck;
 		}
 		return null;

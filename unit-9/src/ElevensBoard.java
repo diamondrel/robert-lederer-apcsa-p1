@@ -86,8 +86,22 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		if (this.cardAt(selectedCards.get(0)).pointValue()+this.cardAt(selectedCards.get(1)).pointValue()==goalNum) {
-			return true;
+		if (selectedCards.size()==2) {
+			System.out.println(this.cardAt(selectedCards.get(0)).pointValue());
+			System.out.println(this.cardAt(selectedCards.get(1)).pointValue());
+			if (this.cardAt(selectedCards.get(0)).pointValue()+this.cardAt(selectedCards.get(1)).pointValue()==goalNum) {
+				System.out.println("We got it");
+				return true;
+			}
+		}
+		else if (selectedCards.size()==BOARD_SIZE) {
+			for (int i = 0;i<BOARD_SIZE;i++) {
+				for (int j=0;j<BOARD_SIZE;j++) {
+					if (j!=i&&this.cardAt(selectedCards.get(i)).pointValue()+this.cardAt(selectedCards.get((j)%BOARD_SIZE)).pointValue()==goalNum) {
+						return true;
+					}
+				}
+			}
 		}
 		return false;
 	}
@@ -102,11 +116,24 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 		// doesnt work with any amount of cards yet
-		for (int i = 0; i<3;i++) {
-			if(this.cardAt(selectedCards.get(i)).rank()=="king"&&this.cardAt(selectedCards.get((i+1)%3)).rank()=="queen"&&this.cardAt(selectedCards.get((i+2)%3)).rank()=="jack") {
-				return true;
+		if (selectedCards.size()==3) {
+			for (int i = 0; i<3;i++) {
+				if(this.cardAt(selectedCards.get(i)).rank().equals("king")&&this.cardAt(selectedCards.get((i+1)%3)).rank().equals("queen")&&this.cardAt(selectedCards.get((i+2)%3)).rank().equals("jack")) {
+					return true;
+				}
+				else System.out.println(this.cardAt(selectedCards.get(i)).rank());
 			}
-			else System.out.println(this.cardAt(selectedCards.get(i)).rank());
+		}
+		else if (selectedCards.size()==BOARD_SIZE) {
+			for (int i=0;i<BOARD_SIZE;i++) {
+				for (int j=0;j<BOARD_SIZE;j++) {
+					for (int k=0;k<BOARD_SIZE;k++) {
+						if(i!=j&&j!=k&&k!=i&&this.cardAt(selectedCards.get(i)).rank().equals("king")&&this.cardAt(selectedCards.get(j)).rank().equals("queen")&&this.cardAt(selectedCards.get(k)).rank().equals("jack")) {
+							return true;
+						}
+					}
+				}
+			}
 		}
 		System.out.println("\n");
 		return false;
