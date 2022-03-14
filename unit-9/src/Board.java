@@ -46,6 +46,7 @@ public abstract class Board {
 	 * dealing some cards to this board.
 	 */
 	public void newGame() {
+		
 		deck.shuffle();
 		dealMyCards();
 	}

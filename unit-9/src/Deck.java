@@ -1,5 +1,6 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The Deck class represents a shuffled deck of cards.
@@ -41,9 +42,14 @@ public class Deck {
 				k++;
 			}
 		}
-		cardBase=cards;
-		System.out.println(cardBase.equals(cards));
+		cardBase = new ArrayList<Card>();
+		
 		size=cards.size();
+		for (Card i : cards) {
+			cardBase.add(i);
+		}
+		System.out.println(cardBase.equals(cards));
+		System.out.println(size);
 		shuffle();
 	}
 	
@@ -74,7 +80,10 @@ public class Deck {
 	 * and reset the size to represent the entire deck.
 	 */
 	public void shuffle() {
-		cards=cardBase;
+		cards.clear();
+		for (Card i:cardBase) {
+			cards.add(i);
+		}
 		for (int k=size()-1; k>0;k--) {
 			int r = (int) (Math.random()*k);
 			System.out.println("random is "+r);
@@ -83,6 +92,8 @@ public class Deck {
 			cards.set(r, cardsCurrent);
 		}
 		size();
+		System.out.println(cardBase.size());
+		System.out.println(size);
 	}
 
 	/**

@@ -118,10 +118,10 @@ public class ElevensBoard extends Board {
 		// doesnt work with any amount of cards yet
 		if (selectedCards.size()==3) {
 			for (int i = 0; i<3;i++) {
+				System.out.println(this.cardAt(selectedCards.get(i)).rank()+" "+this.cardAt(selectedCards.get((i+1)%3)).rank()+" "+this.cardAt(selectedCards.get((i+2)%3)).rank());
 				if(this.cardAt(selectedCards.get(i)).rank().equals("king")&&this.cardAt(selectedCards.get((i+1)%3)).rank().equals("queen")&&this.cardAt(selectedCards.get((i+2)%3)).rank().equals("jack")) {
 					return true;
 				}
-				else System.out.println(this.cardAt(selectedCards.get(i)).rank());
 			}
 		}
 		else if (selectedCards.size()==BOARD_SIZE) {
