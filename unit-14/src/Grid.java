@@ -20,13 +20,31 @@ public class Grid
 	//find out which of the vals occurs the most
 	public String findMax(String[] vals)
 	{
-		return "nothing yet";
+		int max = Integer.MIN_VALUE;
+		String output = "";
+		String maxStr = "";
+		for (String i:vals) {
+			if (countVals(i)>max) {
+				max = countVals(i);
+				maxStr = i;
+			}
+			output+=i+" appears "+countVals(i)+" times\n";
+		}
+		return output+maxStr+" appears the most, at "+max+" times";
 	}
 
 	//returns a count of how many times val occurs in the matrix
 	private int countVals( String val )
 	{
-		return 0;
+		int count = 0;
+		for (String[] i:grid) {
+			for (String j:i) {
+				if (j.equals(val)) {
+					count++;
+				}
+			}
+		}
+		return count;
 	}
 
 	//display the grid

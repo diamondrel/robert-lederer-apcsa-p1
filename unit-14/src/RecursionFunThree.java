@@ -20,6 +20,12 @@ public class RecursionFunThree
 	 */
 	public static int luckyThrees( long number )
 	{
+		if (Long.toString(number).length() > 1) {
+			if (number%10==3) {
+				return 1+luckyThrees(number/10);
+			}
+			return 0+luckyThrees(number/10);
+		}
 		return 0;
 	}
 }
