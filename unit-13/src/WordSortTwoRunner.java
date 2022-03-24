@@ -11,14 +11,16 @@ import static java.lang.System.*;
 public class WordSortTwoRunner
 {
 	public static void main( String args[] ) throws IOException
-	{
+	{	
 		Scanner file = new Scanner(new File("wordsorttwo.dat"));
 		int size = file.nextInt();
 		file.nextLine();
 		for(int i = 0; i<size; i++)
 		{
 			String sentence = file.nextLine();
-			//instantiate a new WordSort
+			WordSortTwo sorter = new WordSortTwo(sentence);
+			sorter.sort();
+			System.out.println(sorter.toString());
 		}
 	}
 }
