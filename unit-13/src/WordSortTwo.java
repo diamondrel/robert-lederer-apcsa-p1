@@ -16,16 +16,36 @@ public class WordSortTwo
 
 	public void sort()
 	{
-		for (int i =0;i<wordRay.length;i++) {
-			for (int j=0;j<wordRay.length;j++) {
-				
+		String temp = "";
+		Boolean cont = false;
+		for (int k=0;k<wordRay.length;k++) {
+		for (int i =0;i<wordRay.length-1;i++) {
+			cont = true;
+			int j = 0;
+			while (j<wordRay[i].length()&&cont) {
+				if (wordRay[i].charAt(j)<wordRay[i+1].charAt(j)) {
+					cont = false;
+				}
+				else if (wordRay[i].charAt(j)>wordRay[i+1].charAt(j)) {
+					temp = wordRay[i];
+					wordRay[i]=wordRay[i+1];
+					wordRay[i+1]=temp;
+					cont = false;
+				}
+				else {
+					j++;
+				}
 			}
+		}
 		}
 	}
 
 	public String toString()
 	{
 		String output="";
-		return output+"\n\n";
+		for (int i = 0;i<wordRay.length;i++) {
+			output+=wordRay[i]+"\n";
+		}
+		return output;
 	}
 }
