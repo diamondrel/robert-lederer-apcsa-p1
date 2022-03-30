@@ -82,9 +82,8 @@ public class Block implements Locatable
 	
 	public boolean equals(Object obj)
 	{
-		if (this.equals(obj))
-			return true;
-		return false;
+		Block cB = (Block) obj;
+		return (height==cB.getHeight()&&width==cB.getWidth()&&xPos==cB.getX()&&yPos==cB.getY());
 	}
 	
 	

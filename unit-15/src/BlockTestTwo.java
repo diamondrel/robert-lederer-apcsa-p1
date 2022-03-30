@@ -18,7 +18,7 @@ public class BlockTestTwo extends Canvas
 		Block one = new Block();
 		one.draw(window);
 
-		Block two = new Block(50,50,30,30);
+		Block two = new Block(90,50,30,30);
 		two.draw(window);
 
 		Block three = new Block(350,350,15,15,Color.RED);
