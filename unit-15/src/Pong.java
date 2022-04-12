@@ -76,12 +76,19 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			ball.setYSpeed(0);
 		}
 
-		if((ball.getX()<=leftPaddle.getX()+leftPaddle.getWidth())&&)
+		if(ball.getX()<=leftPaddle.getX()+leftPaddle.getWidth()+Math.abs(ball.getXSpeed())&&((ball.getY()>=leftPaddle.getY()&&ball.getY()<leftPaddle.getY()+leftPaddle.getHeight())||(ball.getY()+ball.getHeight()>=leftPaddle.getY()&&ball.getY()+ball.getHeight()<leftPaddle.getY()+leftPaddle.getHeight()))) {
+			if(ball.getX()<=leftPaddle.getX()+leftPaddle.getWidth()-Math.abs(ball.getXSpeed()))
+				ball.setYSpeed(ball.getYSpeed()*-1);
+			else
+				ball.setXSpeed(ball.getXSpeed()*-1);
+		}
 		
-		
-		
-		//see if the ball hits the right paddle
-		
+		if(ball.getX()<=rightPaddle.getX()+rightPaddle.getWidth()+Math.abs(ball.getXSpeed())&&((ball.getY()>=rightPaddle.getY()&&ball.getY()<rightPaddle.getY()+rightPaddle.getHeight())||(ball.getY()+ball.getHeight()>=rightPaddle.getY()&&ball.getY()+ball.getHeight()<rightPaddle.getY()+rightPaddle.getHeight()))) {
+			if(ball.getX()<=rightPaddle.getX()+rightPaddle.getWidth()-Math.abs(ball.getXSpeed()))
+				ball.setYSpeed(ball.getYSpeed()*-1);
+			else
+				ball.setXSpeed(ball.getXSpeed()*-1);
+		}
 		
 		
 
