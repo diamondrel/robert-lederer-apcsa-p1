@@ -70,13 +70,13 @@ public class Pong extends Canvas implements KeyListener, Runnable
 			ball.setYSpeed(0);
 		}
 
-		
-		//see if the ball hits the top or bottom wall 
+		if(!(ball.getY()>=10 && ball.getY()<=580))
+		{
+			ball.setXSpeed(0);
+			ball.setYSpeed(0);
+		}
 
-
-
-
-		//see if the ball hits the left paddle
+		if((ball.getX()<=leftPaddle.getX()+leftPaddle.getWidth())&&)
 		
 		
 		

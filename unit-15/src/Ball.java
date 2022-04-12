@@ -96,5 +96,7 @@ public class Ball extends Block
 		return xSpeed;
 	}
 
-	//add a toString() method
+	public String toString() {
+		return super.toString()+" - xSpeed: "+xSpeed+" - ySpeed: "+ySpeed;
+	}
 }

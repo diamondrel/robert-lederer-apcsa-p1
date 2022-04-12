@@ -101,8 +101,6 @@ public class Block implements Locatable
 	}
 
 	public String toString() {
-		String result = "";
-		result+="X: "+xPos+" - Y: "+yPos+" - Width: "+width+" - Height: "+height+" - Color: "+color.toString();
-		return result;
+		return "X: "+xPos+" - Y: "+yPos+" - Width: "+width+" - Height: "+height+" - Color: "+color.toString();
 	}
 }
