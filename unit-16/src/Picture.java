@@ -97,6 +97,90 @@ public class Picture extends SimplePicture
       }
     }
   }
+ 
+  /** Method to set the picture to only blue */
+  public void keepOnlyBlue()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  /** Method to set the picture to only blue */
+  public void keepOnlyRed()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setBlue(0);
+        pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  /** Method to set the picture to only blue */
+  public void keepOnlyGreen()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(0);
+        pixelObj.setBlue(0);
+      }
+    }
+  }
+  
+  /** Method to set the picture to only blue */
+  public void negate()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(255-pixelObj.getRed());
+        pixelObj.setGreen(255-pixelObj.getGreen());
+        pixelObj.setBlue(255-pixelObj.getBlue());
+      }
+    }
+  }
+  
+  /** Method to set the picture to only blue */
+  public void greyscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	int val = (pixelObj.getRed()+pixelObj.getBlue()+pixelObj.getGreen())/3;
+        pixelObj.setRed(val);
+        pixelObj.setGreen(val);
+        pixelObj.setBlue(val);
+      }
+    }
+  }
+  public void fixUnderwater()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	pixelObj.setRed((pixelObj.getRed()+pixelObj.getBlue()+pixelObj.getGreen())/3);
+      }
+    }
+  }
   
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
@@ -117,7 +201,26 @@ public class Picture extends SimplePicture
       }
     } 
   }
-  
+  /** Method that mirrors the picture around a 
+   * vertical mirror in the center of the picture
+   * from left to right */
+ public void mirrorRightToLeftVertical()
+ {
+   Pixel[][] pixels = this.getPixels2D();
+   Pixel leftPixel = null;
+   Pixel rightPixel = null;
+   int width = pixels[0].length;
+   for (int row = pixels.length-1; row > 0; row--)
+   {
+     for (int col = 0; col < width / 2; col++)
+     {
+       leftPixel = pixels[row][col];
+       rightPixel = pixels[row][width - 1 - col];
+       rightPixel.setColor(leftPixel.getColor());
+     }
+   } 
+ }
+ 
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
   {
