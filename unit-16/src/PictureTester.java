@@ -77,13 +77,47 @@ public class PictureTester
     caterpillar.mirrorRightToLeftVertical();
     caterpillar.explore();
   }
-  
+  public static void testMirrorHorizontal()
+  {
+    Picture caterpillar = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\temple.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorHorizontal();
+    caterpillar.explore();
+  }
+  public static void testMirrorHorizontalTopToBot()
+  {
+    Picture caterpillar = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\temple.jpg");
+    caterpillar.explore();
+    caterpillar.mirrorBotToTop();
+    caterpillar.explore();
+  }
+  public static void testMirrorDiagonal()
+  {
+    Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
+    beach.explore();
+    beach.mirrorDiagonal();
+    beach.explore();
+  }
+  public static void testMirrorDiagonalTwo()
+  {
+	    Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
+	    beach.explore();
+	    beach.mirrorDiagonalTwo();
+	    beach.explore();
+	  }
   /** Method to test mirrorTemple */
   public static void testMirrorTemple()
   {
     Picture temple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\temple.jpg");
     temple.explore();
     temple.mirrorTemple();
+    temple.explore();
+  }
+  public static void testMirrorArms()
+  {
+    Picture temple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\snowman.jpg");
+    temple.explore();
+    temple.mirrorArms();
     temple.explore();
   }
   
@@ -118,9 +152,13 @@ public class PictureTester
 //    testGrayscale();
 ////    testFixUnderwater();
 //    testMirrorVertical();
-    testMirrorRightToLeftVertical();
+//    testMirrorRightToLeftVertical();
+//	  testMirrorHorizontal();
+//	  testMirrorHorizontalTopToBot();
+//	  testMirrorDiagonal();
+//	  testMirrorDiagonalTwo();
 //    testMirrorTemple();
-    //testMirrorArms();
+    testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();

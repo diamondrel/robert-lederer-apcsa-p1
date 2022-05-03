@@ -210,16 +210,84 @@ public class Picture extends SimplePicture
    Pixel leftPixel = null;
    Pixel rightPixel = null;
    int width = pixels[0].length;
-   for (int row = pixels.length-1; row > 0; row--)
+   for (int row = 0; row < pixels.length-1; row++)
    {
-     for (int col = 0; col < width / 2; col++)
+     for (int col = width-1;col >width/2; col--)
      {
-       leftPixel = pixels[row][col];
-       rightPixel = pixels[row][width - 1 - col];
-       rightPixel.setColor(leftPixel.getColor());
+       rightPixel = pixels[row][col];
+       leftPixel = pixels[row][width - 1 - col];
+       leftPixel.setColor(rightPixel.getColor());
      }
    } 
  }
+ /** Method that mirrors the picture around a 
+  * vertical mirror in the center of the picture
+  * from left to right */
+public void mirrorHorizontal()
+{
+  Pixel[][] pixels = this.getPixels2D();
+  Pixel topPixel = null;
+  Pixel bottomPixel = null;
+  int width = pixels[0].length;
+  for (int row = 0; row < pixels.length/2; row++)
+  {
+    for (int col = 0; col < width; col++)
+    {
+      topPixel = pixels[row][col];
+      bottomPixel = pixels[pixels.length - 1 - row][col];
+      bottomPixel.setColor(topPixel.getColor());
+    }
+  } 
+}
+public void mirrorBotToTop()
+{
+  Pixel[][] pixels = this.getPixels2D();
+  Pixel topPixel = null;
+  Pixel bottomPixel = null;
+  int width = pixels[0].length;
+  for (int row = pixels.length/2; row < pixels.length; row++)
+  {
+    for (int col = 0; col < width; col++)
+    {
+      bottomPixel = pixels[row][col];
+      topPixel = pixels[pixels.length - 1 - row][col];
+      topPixel.setColor(bottomPixel.getColor());
+    }
+  } 
+}
+
+public void mirrorDiagonal()
+{
+  Pixel[][] pixels = this.getPixels2D();
+  Pixel rightPixel = null;
+  Pixel leftPixel = null;
+  int width = pixels.length;
+  for (int row = 0;row<width;row++)
+  {
+    for (int col = 0; col < width; col++)
+    {
+      leftPixel = pixels[row][col];
+      rightPixel = pixels[col][row];
+      rightPixel.setColor(leftPixel.getColor());
+    }
+  } 
+}
+public void mirrorDiagonalTwo()
+{
+  Pixel[][] pixels = this.getPixels2D();
+  Pixel rightPixel = null;
+  Pixel leftPixel = null;
+  int width = pixels.length;
+  for (int col = 0;col<width;col++)
+  {
+    for (int row = width-1; row >col; row--)
+    {
+      leftPixel = pixels[row][col];
+      rightPixel = pixels[col][row];
+      rightPixel.setColor(leftPixel.getColor());
+    }
+  } 
+}
  
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
@@ -235,6 +303,28 @@ public class Picture extends SimplePicture
     {
       // loop from 13 to just before the mirror point
       for (int col = 13; col < mirrorPoint; col++)
+      {
+        
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[row]                       
+                         [mirrorPoint - col + mirrorPoint];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+  public void mirrorArms()
+  {
+    int mirrorPoint = 204;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 155; row < 196; row++)
+    {
+      // loop from 13 to just before the mirror point
+      for (int col = 100; col < 200; col++)
       {
         
         leftPixel = pixels[row][col];      
