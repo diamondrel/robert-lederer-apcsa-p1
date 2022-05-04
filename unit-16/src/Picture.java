@@ -334,6 +334,28 @@ public void mirrorDiagonalTwo()
       }
     }
   }
+  public void mirrorGull()
+  {
+    int mirrorPoint = 354;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 230; row < 330; row++)
+    {
+      // loop from 13 to just before the mirror point
+      for (int col = 230; col < 350; col++)
+      {
+        
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[row]                       
+                         [mirrorPoint - col + mirrorPoint];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
   
   /** copy from the passed fromPic to the
     * specified startRow and startCol in the

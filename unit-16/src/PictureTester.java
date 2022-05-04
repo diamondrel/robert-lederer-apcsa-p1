@@ -120,6 +120,13 @@ public class PictureTester
     temple.mirrorArms();
     temple.explore();
   }
+  public static void testMirrorGull()
+  {
+    Picture temple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\seagull.jpg");
+    temple.explore();
+    temple.mirrorGull();
+    temple.explore();
+  }
   
   /** Method to test the collage method */
   public static void testCollage()
@@ -158,9 +165,8 @@ public class PictureTester
 //	  testMirrorDiagonal();
 //	  testMirrorDiagonalTwo();
 //    testMirrorTemple();
-    testMirrorArms();
-    //testMirrorGull();
-    //testMirrorDiagonal();
+//    testMirrorArms();
+    testMirrorGull();
     //testCollage();
     //testCopy();
     //testEdgeDetection();
