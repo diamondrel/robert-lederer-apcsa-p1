@@ -135,6 +135,12 @@ public class PictureTester
     canvas.createCollage();
     canvas.explore();
   }
+  public static void testCollageTwo()
+  {
+    Picture canvas = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\640x480.jpg");
+    canvas.createCollageTwo();
+    canvas.explore();
+  }
   
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
@@ -166,10 +172,10 @@ public class PictureTester
 //	  testMirrorDiagonalTwo();
 //    testMirrorTemple();
 //    testMirrorArms();
-    testMirrorGull();
-    //testCollage();
+//    testMirrorGull();
+//    testCollage();
     //testCopy();
-    //testEdgeDetection();
+    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

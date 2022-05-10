@@ -387,12 +387,25 @@ public void mirrorDiagonalTwo()
       }
     }   
   }
+public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int stopCol){
+	Pixel fromPixel = null;
+	Pixel toPixel = null;
+	Pixel[][] toPixels = this.getPixels2D();
+	Pixel[][] fromPixels = fromPic.getPixels2D();
+	for (int fromRow = 0, toRow = startRow; fromRow < stopRow && toRow < stopRow; fromRow++, toRow++){
+		for (int fromCol = 0, toCol = startCol; fromCol < stopCol && toCol < stopCol;fromCol++, toCol++){
+			fromPixel = fromPixels[fromRow][fromCol];
+			toPixel = toPixels[toRow][toCol];
+			toPixel.setColor(fromPixel.getColor());
+		}
+	}   
+}
 
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\flower1.jpg");
+    Picture flower2 = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -402,9 +415,24 @@ public void mirrorDiagonalTwo()
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
-    this.write("collage.jpg");
+    this.write("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\collage.jpg");
   }
   
+  public void createCollageTwo()
+  {
+    Picture flower1 = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\flower1.jpg");
+    Picture flower2 = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\flower2.jpg");
+    this.copyTwo(flower1,0,0,10,10);
+    this.copyTwo(flower2,100,0,130,20);
+    this.copyTwo(flower1,200,0,210,30);
+    Picture flowerNoBlue = new Picture(flower2);
+    flowerNoBlue.zeroBlue();
+    this.copyTwo(flowerNoBlue,300,0,360,10);
+    this.copyTwo(flower1,400,0,420,10);
+    this.copyTwo(flower2,500,0,550,30);
+    this.mirrorVertical();
+    this.write("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\collage.jpg");
+  }
   
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
@@ -413,18 +441,20 @@ public void mirrorDiagonalTwo()
   {
     Pixel leftPixel = null;
     Pixel rightPixel = null;
+    Pixel downPixel = null;
     Pixel[][] pixels = this.getPixels2D();
     Color rightColor = null;
-    for (int row = 0; row < pixels.length; row++)
+    Color downColor = null;
+    for (int row = 0; row < pixels.length-1; row++)
     {
-      for (int col = 0; 
-           col < pixels[0].length-1; col++)
+      for (int col = 0; col < pixels[0].length-1; col++)
       {
+    	downPixel = pixels[row+1][col];
         leftPixel = pixels[row][col];
         rightPixel = pixels[row][col+1];
         rightColor = rightPixel.getColor();
-        if (leftPixel.colorDistance(rightColor) > 
-            edgeDist)
+        downColor = downPixel.getColor();
+        if (leftPixel.colorDistance(rightColor) > edgeDist||leftPixel.colorDistance(downColor)>edgeDist)
           leftPixel.setColor(Color.BLACK);
         else
           leftPixel.setColor(Color.WHITE);
