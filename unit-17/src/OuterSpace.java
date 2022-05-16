@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
-	private Ship ship;
+	private Ship ship = new Ship();
 	private Alien alienOne;
 	private Alien alienTwo;
 
@@ -62,7 +62,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
-
+		
 		graphToBack.setColor(Color.BLUE);
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
@@ -72,7 +72,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			ship.move("LEFT");
 		}
-
+		
 		//add code to move Ship, Alien, etc.
 
 
@@ -145,7 +145,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
    		while(true)
    		{
    		   Thread.currentThread().sleep(5);
-            repaint();
+           repaint();
          }
       }catch(Exception e)
       {
