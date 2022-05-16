@@ -39,6 +39,20 @@ public class Bullets
 	{
 		return null;
 	}
+	public Double[] traceGroup(int tracers) {
+		Double[] result = new Double[tracers];
+		for (int i = 0; i<tracers;i++) {
+			result[i]=trace();
+		}
+		return result;
+	}
+	public Double trace() {
+		Double result = 566.6845825796453;
+		Double finalX=Math.atan2(result - getX(),getY());
+		System.out.println(result-getX()+" | Random:" +result);
+		System.out.println("Sin (Y speed): "+3*Math.sin(finalX)+" | Cos (X speed): "+3*Math.cos(finalX));
+		return finalX;
+	} 
 
 	public String toString()
 	{

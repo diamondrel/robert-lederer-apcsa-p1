@@ -77,26 +77,11 @@ public class Ship extends MovingThing
 		if (weapon=="photonTorpedosSpread") {
 			if (System.currentTimeMillis()-tricobalt>=10000) {
 				tricobalt = System.currentTimeMillis();
-				for(Double i:traceGroup(5)) {
-					
-				}
+				Bullets photonSpread = new Bullets();
 			}
 		}
 	}
-	public Double[] traceGroup(int tracers) {
-		Double[] result = new Double[tracers];
-		for (int i = 0; i<tracers;i++) {
-			result[i]=trace();
-		}
-		return result;
-	}
-	public Double trace() {
-		Double result = 566.6845825796453;
-		Double finalX=Math.atan2(result - getX(),getY());
-		System.out.println(result-getX()+" | Random:" +result);
-		System.out.println("Sin (X speed): "+3*Math.sin(finalX)+" | Cos (Y speed): "+3*Math.cos(finalX));
-		return finalX;
-	} 
+	
 	public void draw( Graphics window )
 	{
    	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
