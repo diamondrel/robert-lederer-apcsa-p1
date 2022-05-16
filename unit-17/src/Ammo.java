@@ -35,8 +35,6 @@ public class Ammo extends MovingThing
 	{
 		super(x,y,5,5);
 		setSpeed(s);
-		finalX=Math.atan2(-y, trace - x);
-		System.out.println(Math.atan2(-y, trace - x));
 		try
 		{
 			URL url = getClass().getResource("photonTorpedo.png");

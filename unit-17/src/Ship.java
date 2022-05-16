@@ -94,7 +94,7 @@ public class Ship extends MovingThing
 		Double result = 566.6845825796453;
 		Double finalX=Math.atan2(result - getX(),getY());
 		System.out.println(result-getX()+" | Random:" +result);
-		System.out.println("Sin: "+3*Math.sin(finalX)+" | Cos: "+3*Math.cos(finalX));
+		System.out.println("Sin (X speed): "+3*Math.sin(finalX)+" | Cos (Y speed): "+3*Math.cos(finalX));
 		return finalX;
 	} 
 	public void draw( Graphics window )
