@@ -16,7 +16,8 @@ import java.util.ArrayList;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
-	private Ship ship = new Ship();
+	private Ship ship;
+	private Boolean galaga = true;
 	private Alien alienOne;
 	private Alien alienTwo;
 
@@ -37,7 +38,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//instantiate other instance variables
 		//Ship, Alien
-
+		ship = new Ship();
+//		alienOne = new Alien();
+//		alienTwo = new Alien(60,20);
+		
 		this.addKeyListener(this);
 		new Thread(this).start();
 
@@ -67,12 +71,24 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
-
-		if(keys[0] == true)
-		{
-			ship.move("LEFT");
+		ship.draw(graphToBack);
+		alienOne.draw(graphToBack);
+		alienTwo.draw(graphToBack);
+		if (keys[0]) {
+			ship.move("L");
 		}
-		
+		if (keys[1]) {
+			ship.move("R");
+		}
+		if (keys[2]&&galaga==false) {
+			ship.move("N");
+		}
+		if (keys[3]&&galaga==false) {
+			ship.move("S");
+		}
+		if (keys[4]) {
+			ship.fire("photonTorpedos");
+		}
 		//add code to move Ship, Alien, etc.
 
 
@@ -92,12 +108,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			keys[1] = true;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP)
+		}if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			keys[2] = true;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN)
+		}if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			keys[3] = true;
 		}
@@ -117,12 +131,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		if (e.getKeyCode() == KeyEvent.VK_RIGHT)
 		{
 			keys[1] = false;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_UP)
+		}if (e.getKeyCode() == KeyEvent.VK_UP)
 		{
 			keys[2] = false;
-		}
-		if (e.getKeyCode() == KeyEvent.VK_DOWN)
+		}if (e.getKeyCode() == KeyEvent.VK_DOWN)
 		{
 			keys[3] = false;
 		}

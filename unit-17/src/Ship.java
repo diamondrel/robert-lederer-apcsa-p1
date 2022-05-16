@@ -13,15 +13,17 @@ public class Ship extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private long tricobalt = 0;
+
 
 	public Ship()
 	{
-		this(10,10,80,80,10);
+		this(10,450,80,80,2);
 	}
 
 	public Ship(int x, int y)
 	{
-		this(x, y, 10, 10,3);
+		this(x, y, 10, 10,5);
 	}
 
 	public Ship(int x, int y, int s)
@@ -40,7 +42,7 @@ public class Ship extends MovingThing
 		}
 		catch(Exception e)
 		{
-			System.out.println("AAAAA");
+			System.out.println("Internal scanners offline.");
 		}
 	}
 
@@ -57,9 +59,31 @@ public class Ship extends MovingThing
 
 	public void move(String direction)
 	{
-		//add code here
+		if (direction=="L") {
+			setX(getX()-(getSpeed()/2));
+		}
+		if (direction=="R") {
+			setX(getX()+(getSpeed()/2));
+		}
+		if (direction=="N") {
+			setY(getY()-(getSpeed()/2));
+		}
+		if (direction=="S") {
+			setY(getY()+(getSpeed()/2));
+		}
 	}
-
+	
+	public void fire(String weapon) {
+		if (weapon=="photonTorpedos") {
+			if (System.currentTimeMillis()-tricobalt>=10000) {
+				tricobalt = System.currentTimeMillis();
+				trace(5);
+			}
+		}
+	}
+	public void trace(int tracers) {
+		
+	}
 	public void draw( Graphics window )
 	{
    	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);

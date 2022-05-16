@@ -16,42 +16,42 @@ public class Alien extends MovingThing
 
 	public Alien()
 	{
-		this(0,0,30,30,0);
+		this(20,20,30,30,3);
 	}
 
 	public Alien(int x, int y)
 	{
-		//add code here
+		this(x,y,30,30,3);
 	}
 
 	public Alien(int x, int y, int s)
 	{
-		//add code here
+		this(x,y,30,30,s);
 	}
 
 	public Alien(int x, int y, int w, int h, int s)
 	{
 		super(x, y, w,h);
-		speed=s;
+		setSpeed(s);
 		try
 		{
-			URL url = getClass().getResource("/images/alien.jpg");
+			URL url = getClass().getResource("alien.jpg");
 			image = ImageIO.read(url);
 		}
 		catch(Exception e)
 		{
-			//feel free to do something here
+			System.out.println("Scans reveal no alien life.");
 		}
 	}
 
 	public void setSpeed(int s)
 	{
-	   //add code
+	   speed=s;
 	}
 
 	public int getSpeed()
 	{
-	   return 0;
+	   return speed;
 	}
 
    public void move(String direction)
@@ -66,6 +66,6 @@ public class Alien extends MovingThing
 
 	public String toString()
 	{
-		return "";
+		return super.toString() +" "+ getSpeed();
 	}
 }
