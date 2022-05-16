@@ -14,17 +14,12 @@ public abstract class MovingThing implements Moveable
 
 	public MovingThing()
 	{
-		xPos = 10;
-		yPos = 10;
-		width = 10;
-		height = 10;
+		this(10,10,10,10);
 	}
 
 	public MovingThing(int x, int y)
 	{
-		setPos(x,y);
-		setWidth(10);
-		setHeight(10);
+		this(x,y,10,10);
 	}
 
 	public MovingThing(int x, int y, int w, int h)

@@ -20,5 +20,9 @@ public class Shiptest
         test3.setX(3);
         test3.setY(5);
         System.out.println("Ship 3 " + test2);
+        
+        Ship torpedo1 = new Ship(200,450,20,20,3);
+        Double trace = torpedo1.trace();
+        System.out.println("Angle Radians: "+trace+" Angle Degrees: "+Math.toDegrees(trace));
     }
 }

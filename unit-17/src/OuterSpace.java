@@ -57,7 +57,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	{
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
-
 		//take a snap shop of the current screen and same it as an image
 		//that is the exact same width and height as the current screen
 		if(back==null)
@@ -66,14 +65,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		//create a graphics reference to the back ground image
 		//we will draw all changes on the background image
 		Graphics graphToBack = back.createGraphics();
-		
 		graphToBack.setColor(Color.BLUE);
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
 		graphToBack.fillRect(0,0,800,600);
 		ship.draw(graphToBack);
-		alienOne.draw(graphToBack);
-		alienTwo.draw(graphToBack);
+//		alienOne.draw(graphToBack);
+//		alienTwo.draw(graphToBack);
 		if (keys[0]) {
 			ship.move("L");
 		}
@@ -87,7 +85,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			ship.move("S");
 		}
 		if (keys[4]) {
-			ship.fire("photonTorpedos");
+			ship.fire("photonTorpedosSpread");
 		}
 		//add code to move Ship, Alien, etc.
 

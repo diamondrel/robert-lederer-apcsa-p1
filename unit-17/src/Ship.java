@@ -8,13 +8,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.imageio.ImageIO;
+import java.awt.geom.Line2D;
 
 public class Ship extends MovingThing
 {
 	private int speed;
 	private Image image;
 	private long tricobalt = 0;
-
 
 	public Ship()
 	{
@@ -74,16 +74,29 @@ public class Ship extends MovingThing
 	}
 	
 	public void fire(String weapon) {
-		if (weapon=="photonTorpedos") {
+		if (weapon=="photonTorpedosSpread") {
 			if (System.currentTimeMillis()-tricobalt>=10000) {
 				tricobalt = System.currentTimeMillis();
-				trace(5);
+				for(Double i:traceGroup(5)) {
+					
+				}
 			}
 		}
 	}
-	public void trace(int tracers) {
-		
+	public Double[] traceGroup(int tracers) {
+		Double[] result = new Double[tracers];
+		for (int i = 0; i<tracers;i++) {
+			result[i]=trace();
+		}
+		return result;
 	}
+	public Double trace() {
+		Double result = 566.6845825796453;
+		Double finalX=Math.atan2(result - getX(),getY());
+		System.out.println(result-getX()+" | Random:" +result);
+		System.out.println("Sin: "+3*Math.sin(finalX)+" | Cos: "+3*Math.cos(finalX));
+		return finalX;
+	} 
 	public void draw( Graphics window )
 	{
    	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
