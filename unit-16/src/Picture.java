@@ -462,6 +462,45 @@ public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int 
     }
   }
   
+  public void backgroundSwap()
+  {
+	  System.out.println("Property of Robert Lederer, All Rights Reserved\nPeriod 1, Computer 08, 5/17/2022");
+	    Picture bg = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\moon-surface.jpg");
+	    Pixel[][] bgPix = bg.getPixels2D();
+	    Pixel[][] pixels = this.getPixels2D();
+	    Pixel leftPixel = null;
+	    Pixel rightPixel = null;
+	    Boolean allbg=false;
+	    // loop through the rows
+	    for (int row = 365; row < 380; row++)
+	    {
+	      for (int col = 355; col < 390; col++)
+	      {
+	        
+	        leftPixel = pixels[row][col];      
+	        rightPixel = pixels[row][col-45];
+	        leftPixel.setColor(rightPixel.getColor());
+	      }
+	      for (int col = 391; col < 405; col++)
+	      {
+	        
+	        leftPixel = pixels[row][col];      
+	        rightPixel = pixels[row][col-45];
+	        leftPixel.setColor(rightPixel.getColor());
+	      }
+	    }
+	    for (int row = 0;row<480;row++) {
+	    	for (int col = 0;col<640;col++) {
+	    		if(allbg&&(row<150||col<145||col>475)) {
+	    			pixels[row][col].setColor(bgPix[row][col].getColor());
+	    		}
+	    		else if(pixels[row][col].getBlue()>=pixels[row][col].getGreen()&&pixels[row][col].getBlue()>=pixels[row][col].getRed()) {
+	    			pixels[row][col].setColor(bgPix[row][col].getColor());
+	    		}
+	    	}
+	    }
+	  }
+  
   
   /* Main method for testing - each class in Java can have a main 
    * method 

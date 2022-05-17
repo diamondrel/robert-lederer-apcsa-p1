@@ -149,6 +149,12 @@ public class PictureTester
     swan.edgeDetection(10);
     swan.explore();
   }
+  public static void testBackgroundSwap()
+  {
+    Picture mark = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\blue-mark.jpg");
+    mark.backgroundSwap();
+    mark.explore();
+  }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -183,5 +189,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	  testBackgroundSwap();
   }
 }
