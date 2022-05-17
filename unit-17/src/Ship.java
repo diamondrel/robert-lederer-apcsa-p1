@@ -13,28 +13,39 @@ import java.awt.geom.Line2D;
 public class Ship extends MovingThing
 {
 	private int speed;
+	private int torpS;
 	private Image image;
-	private long tricobalt = 0;
+	private long tricobalt=0;
+	private long massTricobalt = 0;
+	private long phaserClock=0;
+	private long emitter=0;
+	
 
 	public Ship()
 	{
-		this(10,450,80,80,2);
+		this(10,450,80,80,2,6);
 	}
 
 	public Ship(int x, int y)
 	{
-		this(x, y, 10, 10,5);
+		this(x, y, 10, 10,2,6);
 	}
-
+	
 	public Ship(int x, int y, int s)
 	{
-		this(x, y, 10, 10,s);
+		this(x, y, 10, 10,s, 6);
 	}
 
-	public Ship(int x, int y, int w, int h, int s)
+	public Ship(int x, int y, int s, int ts)
+	{
+		this(x, y, 10, 10,s, ts);
+	}
+
+	public Ship(int x, int y, int w, int h, int s, int ts)
 	{
 		super(x, y, w, h);
 		setSpeed(s);
+		setTorpS(ts);
 		try
 		{
 			URL url = getClass().getResource("ship.jpg");
@@ -49,7 +60,11 @@ public class Ship extends MovingThing
 
 	public void setSpeed(int s)
 	{
-	   speed=s;
+		speed=s;
+	}
+	public void setTorpS(int ts)
+	{
+		torpS=ts;
 	}
 
 	public int getSpeed()
@@ -73,12 +88,40 @@ public class Ship extends MovingThing
 		}
 	}
 	
-	public void fire(String weapon) {
-		if (weapon=="photonTorpedosSpread") {
-			if (System.currentTimeMillis()-tricobalt>=10000) {
-				tricobalt = System.currentTimeMillis();
-				Bullets photonSpread = new Bullets();
+	public void torpedo(Bullets torpedoCluster,Boolean fullSpread) {
+		if (fullSpread&&System.currentTimeMillis()-massTricobalt>=10000) {
+			massTricobalt = System.currentTimeMillis();
+			for (int i=0;i<5;i++) {
+				Double angle = Math.atan(1000*Math.random() / (double) this.getY());
+				int xs = (int) (torpS*Math.sin(angle-(Math.PI/6))+(Math.random()*4)-2)-1;
+				int ys = (int) Math.ceil(torpS*Math.cos(angle+(Math.PI/9))+(Math.random()*4)-2)+2;
+				if(Math.round(Math.random())==1.0) {
+					torpedoCluster.add(new Ammo(this.getX()+5,this.getY()-5,xs,ys));
+				}
+				else 
+					torpedoCluster.add(new Ammo(this.getX()+15,this.getY()-5,xs,ys));
 			}
+		}
+		else if(System.currentTimeMillis()-tricobalt>=500) {
+			torpedoCluster.add(new Ammo(getX(),getY(),0,(int) Math.ceil(torpS+(Math.random()*4)-2)));
+			tricobalt = System.currentTimeMillis();
+		}
+	}
+	public void phaser(PhaserBanks bank, int width,Boolean fullSpread) {
+		if (fullSpread&&System.currentTimeMillis()-phaserClock>=10000) {
+			phaserClock = System.currentTimeMillis();
+			for (int i=0;i<4;i++) {
+				if(Math.floor(Math.random()*2)==1.0) {
+					bank.add(new Beam(this.getX()+25,this.getY()+35,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
+				}
+				else {
+					bank.add(new Beam(this.getX()+55,this.getY()+35,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
+				}
+			}
+		}	
+		else if(!fullSpread&&System.currentTimeMillis()-emitter>=3000) {
+			emitter = System.currentTimeMillis();
+			bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
 		}
 	}
 	

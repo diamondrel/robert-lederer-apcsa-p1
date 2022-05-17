@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
+import java.net.URL;
+
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,46 +18,52 @@ public class Bullets
 
 	public Bullets()
 	{
+		ammo = new ArrayList<Ammo>();
+		
 	}
 
 	public void add(Ammo al)
 	{
+		ammo.add(al);
 	}
 
 	//post - draw each Ammo
 	public void drawEmAll( Graphics window )
 	{
+		for(Ammo i:ammo) {
+			i.draw(window);
+		}
 	}
 
 	public void moveEmAll()
 	{
+		for(Ammo i:ammo) {
+			System.out.println(i);
+			i.move("U");
+		}
 	}
 
 	public void cleanEmUp()
 	{
+		for(int i =0;i<ammo.size();i++) {
+			if (ammo.get(i).getY()<=0) {
+				ammo.remove(i);
+				i--;
+			}
+		}
 	}
 
 	public List<Ammo> getList()
 	{
-		return null;
+		return ammo;
 	}
-	public Double[] traceGroup(int tracers) {
-		Double[] result = new Double[tracers];
-		for (int i = 0; i<tracers;i++) {
-			result[i]=trace();
-		}
-		return result;
-	}
-	public Double trace() {
-		Double result = 566.6845825796453;
-		Double finalX=Math.atan2(result - getX(),getY());
-		System.out.println(result-getX()+" | Random:" +result);
-		System.out.println("Sin (Y speed): "+3*Math.sin(finalX)+" | Cos (X speed): "+3*Math.cos(finalX));
-		return finalX;
-	} 
 
 	public String toString()
 	{
-		return "";
+		String result = "";
+		for (Ammo i:ammo) {
+			result+=i.toString()+"\n";
+		}
+		return result;
 	}
 }

@@ -13,28 +13,25 @@ import javax.imageio.ImageIO;
 
 public class Ammo extends MovingThing
 {
-	private int speed;
 	private Image image;
-	private Line2D trajectory;
-	private Double finalX;
+	private int speed;
+	private int xSpeed;
+	private int ySpeed;
 
 	public Ammo()
 	{
-		this(0,0,0,null);
+		this(0,0,0,2);
 	}
-
 	public Ammo(int x, int y)
 	{
-		this(x,y,2,null);
-	}
-	public Ammo(int x, int y, int s) {
-		this (x,y,s,null);
+		this(x,y,0,2);
 	}
 
-	public Ammo(int x, int y, int s,Double trace)
+	public Ammo(int x, int y,int xs, int ys)
 	{
-		super(x,y,5,5);
-		setSpeed(s);
+		super(x,y,(int)(8+Math.random()*8),(int)(8+Math.random()*8));
+		setSpeed(xs,ys);
+		setSpeed(xs+ys);
 		try
 		{
 			URL url = getClass().getResource("photonTorpedo.png");
@@ -45,15 +42,36 @@ public class Ammo extends MovingThing
 			System.out.println("Torpedo tubes inoperational.");
 		}
 	}
-
-	public void setSpeed(int s)
+	
+	public void setSpeed(int s) {
+		speed =s;
+	}
+	
+	public void setSpeed(int xs,int ys)
 	{
-	   speed=s;
+	   setXSpeed(xs);
+	   setYSpeed(ys);
+	}
+	
+	public void setXSpeed(int xs) {
+		xSpeed=xs;
+	}
+	
+	public void setYSpeed(int ys) {
+		ySpeed=ys;
+	}
+	
+	public int getSpeed() {
+		return speed;
 	}
 
-	public int getSpeed()
+	public int getXSpeed()
 	{
-	   return speed;
+	   return xSpeed;
+	}
+	public int getYSpeed()
+	{
+	   return ySpeed;
 	}
 
 	public void draw( Graphics window )
@@ -62,15 +80,14 @@ public class Ammo extends MovingThing
 	}
 	
 	
-	public void move( String direction )
+	public void move(String direction)
 	{
-		while(getX()>0) {
-			
-		}
+			setY(getY()-ySpeed);
+			setX(getX()+xSpeed);
 	}
 
 	public String toString()
 	{
-		return super.toString()+", "+getSpeed();
+		return super.toString()+", "+getSpeed()+", "+getXSpeed()+", "+getYSpeed();
 	}
 }
