@@ -95,15 +95,21 @@ public class Ship extends MovingThing
 				Double angle = Math.atan(1000*Math.random() / (double) this.getY());
 				int xs = (int) (torpS*Math.sin(angle-(Math.PI/6))+(Math.random()*4)-2)-1;
 				int ys = (int) Math.ceil(torpS*Math.cos(angle+(Math.PI/9))+(Math.random()*4)-2)+2;
-				if(Math.round(Math.random())==1.0) {
-					torpedoCluster.add(new Ammo(this.getX()+5,this.getY()-5,xs,ys));
-				}
+				if(Math.floor(Math.random()*2)<=1.0) 
+					torpedoCluster.add(new Ammo(this.getX()+25,this.getY()+15,xs,ys));
 				else 
-					torpedoCluster.add(new Ammo(this.getX()+15,this.getY()-5,xs,ys));
+					torpedoCluster.add(new Ammo(this.getX()+55,this.getY()+15,xs,ys));		
 			}
 		}
 		else if(System.currentTimeMillis()-tricobalt>=500) {
-			torpedoCluster.add(new Ammo(getX(),getY(),0,(int) Math.ceil(torpS+(Math.random()*4)-2)));
+			double coin=Math.floor(Math.random()*3);
+			System.out.println(coin);
+			if (coin <=0.0)
+				torpedoCluster.add(new Ammo(getX()+20,getY()+35,0,(int) Math.ceil(torpS+(Math.random()*4)-2)));
+			else if(coin <=1.0)
+				torpedoCluster.add(new Ammo(getX()+50,getY()+35,0,(int) Math.ceil(torpS+(Math.random()*4)-2)));
+			else 
+				torpedoCluster.add(new Ammo(getX()+35,getY()+25,0,(int) Math.ceil(torpS+(Math.random()*4)-2)));
 			tricobalt = System.currentTimeMillis();
 		}
 	}
@@ -111,11 +117,15 @@ public class Ship extends MovingThing
 		if (fullSpread&&System.currentTimeMillis()-phaserClock>=10000) {
 			phaserClock = System.currentTimeMillis();
 			for (int i=0;i<4;i++) {
-				if(Math.floor(Math.random()*2)==1.0) {
+				double coin = Math.floor(Math.random()*3);
+				if(coin==1.0) {
 					bank.add(new Beam(this.getX()+25,this.getY()+35,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
 				}
-				else {
+				else if (coin==0.0){
 					bank.add(new Beam(this.getX()+55,this.getY()+35,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
+				}
+				else {
+					bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
 				}
 			}
 		}	

@@ -38,7 +38,6 @@ public class Bullets
 	public void moveEmAll()
 	{
 		for(Ammo i:ammo) {
-			System.out.println(i);
 			i.move("U");
 		}
 	}
