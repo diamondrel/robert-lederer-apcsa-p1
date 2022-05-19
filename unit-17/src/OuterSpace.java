@@ -19,8 +19,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Ship ship;
 	private Boolean galaga = true;
 	private Boolean advWeapons = true;
-	private Alien alienOne;
-	private Alien alienTwo;
+	private AlienHorde aliens;
 
 	/* uncomment once you are ready for this part
 	 *
@@ -41,6 +40,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//instantiate other instance variables
 		//Ship, Alien
+		aliens = new AlienHorde(16,1);
 		ship = new Ship();
 		photonTorpedos = new Bullets();
 		bank = new PhaserBanks();
@@ -80,6 +80,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		photonTorpedos.cleanEmUp();
 		bank.drawEmAll(graphToBack);
 		bank.cleanEmUp();
+		aliens.drawEmAll(graphToBack);
+		aliens.moveEmAll();
+		aliens.removeDeadOnes(photonTorpedos.getList());
 //		alienOne.draw(graphToBack);
 //		alienTwo.draw(graphToBack);
 		if (keys[0]) {
@@ -182,7 +185,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		{
 			keys[4] = false;
 		}
-		if (e.getKeyCode() == KeyEvent.VK_E)
+		if (e.getKeyCode() == KeyEvent.VK_F)
 		{
 			keys[5] = false;
 		}
