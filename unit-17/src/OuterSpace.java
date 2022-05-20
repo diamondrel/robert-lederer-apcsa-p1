@@ -20,6 +20,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Boolean galaga = true;
 	private Boolean advWeapons = true;
 	private AlienHorde aliens;
+	private int winHeight;
+	private int winWidth;
 
 	/* uncomment once you are ready for this part
 	 *
@@ -32,16 +34,18 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private Bullets photonTorpedos;
 	private PhaserBanks bank;
 	
-	public OuterSpace()
+	public OuterSpace(int wi, int hei)
 	{
+		winWidth=wi;
+		winHeight=hei;
 		setBackground(Color.black);
 
 		keys = new boolean[8];
 
 		//instantiate other instance variables
 		//Ship, Alien
-		aliens = new AlienHorde(16,1);
-		ship = new Ship();
+		aliens = new AlienHorde(16,1,wi);
+		ship = new Ship(wi/2,hei-200);
 		photonTorpedos = new Bullets();
 		bank = new PhaserBanks();
 //		alienOne = new Alien();
@@ -73,7 +77,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		graphToBack.setColor(Color.BLUE);
 		graphToBack.drawString("StarFighter ", 25, 50 );
 		graphToBack.setColor(Color.BLACK);
-		graphToBack.fillRect(0,0,800,600);
+		graphToBack.fillRect(0,0,winWidth,winHeight);
 		ship.draw(graphToBack);
 		photonTorpedos.drawEmAll(graphToBack);
 		photonTorpedos.moveEmAll();
@@ -81,7 +85,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		bank.drawEmAll(graphToBack);
 		bank.cleanEmUp();
 		aliens.drawEmAll(graphToBack);
-		aliens.moveEmAll();
+		aliens.moveEmAll(winWidth,winHeight);
 		aliens.removeDeadOnes(photonTorpedos.getList());
 //		alienOne.draw(graphToBack);
 //		alienTwo.draw(graphToBack);

@@ -14,10 +14,22 @@ public class AlienHorde
 {
 	private List<Alien> aliens=new ArrayList<Alien>();
 
-	public AlienHorde(int size,int speed)
+	public AlienHorde(int size,int speed,int width)
 	{
+		
+		int j = 0;
+		int y = 40;
 		for (int i=0;i<size;i++) {
-			aliens.add(new Alien(i*(800/size),40,speed));
+			int x = j*((width/size)+25);
+			System.out.println(x);
+			if(x>width) {
+				j=0;
+				y+=40;
+			}
+			else {
+				j++;
+			}
+			aliens.add(new Alien(x,y,1));
 		}
 	}
 
@@ -39,15 +51,19 @@ public class AlienHorde
 			 i.move(null);
 		 }
 	}
+	public void moveEmAll(int width, int height)
+	{
+		 for(Alien i:aliens) {
+			 i.move(width,height);
+		 }
+	}
 
 	public void removeDeadOnes(List<Ammo> shots)
 	{
 		for(int i=0;i<aliens.size();i++) {
 			Alien al = aliens.get(i);
 			for(Ammo j:shots) {
-				if(j.getY()<al.getY()+15&&j.getY()>al.getY()-15&&j.getX()<al.getX()+15&&j.getX()>al.getX()-15) {
-					aliens.remove(i);
-					i--;
+					
 				}
 			}
 		}

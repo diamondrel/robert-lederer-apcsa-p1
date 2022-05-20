@@ -16,17 +16,17 @@ public class Alien extends MovingThing
 
 	public Alien()
 	{
-		this(20,20,30,30,3);
+		this(20,20,50,50,3);
 	}
 
 	public Alien(int x, int y)
 	{
-		this(x,y,30,30,3);
+		this(x,y,50,50,3);
 	}
 
 	public Alien(int x, int y, int s)
 	{
-		this(x,y,30,30,s);
+		this(x,y,50,50,s);
 	}
 
 	public Alien(int x, int y, int w, int h, int s)
@@ -56,15 +56,30 @@ public class Alien extends MovingThing
 
    public void move(String direction)
 	{
-	   System.out.println(getX());
 	   if(getX()<0||getX()>800) {
-		   setY(getY()+40);
+		   setY(getY()+80);
 		   setSpeed(-getSpeed());
 		   if(getX()<400) {
 			   setX(0);
 		   }
 		   else {
 			   setX(800);
+		   }
+	   }
+	   else {
+		   setX(getX()+speed);
+	   }
+	}
+   	public void move(int width, int height)
+	{
+	   if(getX()<0||getX()>width) {
+		   setY(getY()+80);
+		   setSpeed(-getSpeed());
+		   if(getX()<width/2) {
+			   setX(0);
+		   }
+		   else {
+			   setX(width);
 		   }
 	   }
 	   else {

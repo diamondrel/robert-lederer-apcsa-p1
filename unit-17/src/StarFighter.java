@@ -7,15 +7,15 @@ import java.awt.Component;
 
 public class StarFighter extends JFrame
 {
-	private static final int WIDTH = 800;
-	private static final int HEIGHT = 600;
+	private static final int WIDTH = 1920;
+	private static final int HEIGHT = 1080;
 
 	public StarFighter()
 	{
 		super("STARFIGHTER");
 		setSize(WIDTH,HEIGHT);
 
-		OuterSpace theGame = new OuterSpace();
+		OuterSpace theGame = new OuterSpace(WIDTH, HEIGHT);
 		((Component)theGame).setFocusable(true);
 
 		getContentPane().add(theGame);
