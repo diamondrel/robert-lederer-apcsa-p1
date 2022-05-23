@@ -16,20 +16,20 @@ public class AlienHorde
 
 	public AlienHorde(int size,int speed,int width)
 	{
-		
-		int j = 0;
-		int y = 40;
-		for (int i=0;i<size;i++) {
-			int x = j*((width/size)+25);
-			System.out.println(x);
-			if(x>width) {
-				j=0;
-				y+=40;
+		int y=1;
+		int j=1;
+		int c=1;
+		for(int i=1;i<=size;i++) {//iterate through every alien
+			
+			if(i>size/c) {
+				if(((size/c)*50)>width/3) { //ensure it's not too cramped
+					c++;
+				}
+				y++;
+				j=1;
 			}
-			else {
-				j++;
-			}
-			aliens.add(new Alien(x,y,1));
+			add(new Alien(j*40,y*40,speed));
+			j++;
 		}
 	}
 
@@ -63,7 +63,9 @@ public class AlienHorde
 		for(int i=0;i<aliens.size();i++) {
 			Alien al = aliens.get(i);
 			for(Ammo j:shots) {
-					
+				if(j.getY()<al.getY()+20&&j.getY()>al.getY()-20&&j.getX()<al.getX()+20&&j.getX()>al.getX()-20) {
+					aliens.remove(i);
+					i--;
 				}
 			}
 		}
