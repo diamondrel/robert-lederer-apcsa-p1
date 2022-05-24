@@ -32,4 +32,7 @@ public class PhaserBanks
 			}
 		}
 	}
+	public List<Beam> getList(){
+		return phaser;
+	}
 }

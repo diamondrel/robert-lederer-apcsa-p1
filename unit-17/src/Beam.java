@@ -35,4 +35,17 @@ public class Beam
 	public long getTime() {
 		return time;
 	}
+	
+	public int xI() {
+		return xin;
+	}
+	public int yI() {
+		return yin;
+	}
+	public int xF() {
+		return xfin;
+	}
+	public int yF() {
+		return yfin;
+	}
 }

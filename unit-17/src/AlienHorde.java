@@ -70,6 +70,19 @@ public class AlienHorde
 			}
 		}
 	}
+	public void removeDeadOne(List<Beam> beams)
+	{
+		for(int i=0;i<aliens.size();i++) {
+			Alien al = aliens.get(i);
+			for(Beam j:beams) {
+				int slope = ((j.yF()-j.yI())/(j.xF()-j.xI()));
+				if(slope==(j.yF()-al.getY())/(j.xF()-al.getX()+15)||slope==(j.yF()-al.getY())/(j.xF()-al.getX()-15)) {
+					aliens.remove(i);
+					i--;
+				}
+			}
+		}
+	}
 
 	public String toString()
 	{

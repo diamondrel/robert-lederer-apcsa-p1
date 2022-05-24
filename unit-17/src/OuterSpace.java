@@ -86,7 +86,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		bank.cleanEmUp();
 		aliens.drawEmAll(graphToBack);
 		aliens.moveEmAll(winWidth,winHeight);
-		aliens.removeDeadOnes(photonTorpedos.getList());
+		aliens.removeDeadOnes(photonTorpedos.getList());;
+		aliens.removeDeadOne(bank.getList());
 //		alienOne.draw(graphToBack);
 //		alienTwo.draw(graphToBack);
 		if (keys[0]) {
