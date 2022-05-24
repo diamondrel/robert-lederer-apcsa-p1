@@ -92,7 +92,7 @@ public class Ship extends MovingThing
 		if (fullSpread&&System.currentTimeMillis()-massTricobalt>=10000) {
 			massTricobalt = System.currentTimeMillis();
 			for (int i=0;i<5;i++) {
-				Double angle = Math.atan(1000*Math.random() / (double) this.getY());
+				Double angle = Math.atan(2000*Math.random() / (double) this.getY());
 				int xs = (int) (torpS*Math.sin(angle-(Math.PI/6))+(Math.random()*4)-2)-1;
 				int ys = (int) Math.ceil(torpS*Math.cos(angle+(Math.PI/9))+(Math.random()*4)-2)+2;
 				if(Math.floor(Math.random()*2)<=1.0) 

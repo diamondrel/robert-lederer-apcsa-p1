@@ -9,9 +9,15 @@ import java.io.File;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.Container;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 public class AlienHorde
 {
+	boolean finished=false;
 	private List<Alien> aliens=new ArrayList<Alien>();
 
 	public AlienHorde(int size,int speed,int width)
@@ -28,7 +34,7 @@ public class AlienHorde
 				y++;
 				j=1;
 			}
-			add(new Alien(j*40,y*40,speed));
+			add(new Alien(j*60,y*40,speed));
 			j++;
 		}
 	}
@@ -43,6 +49,10 @@ public class AlienHorde
 		for (Alien i:aliens) {
 			i.draw(window);
 		}
+		while(finished) {
+			window.drawString("YOU WIN!!",920,540);
+		}
+		done(window);
 	}
 
 	public void moveEmAll()
@@ -76,11 +86,20 @@ public class AlienHorde
 			Alien al = aliens.get(i);
 			for(Beam j:beams) {
 				int slope = ((j.yF()-j.yI())/(j.xF()-j.xI()));
+				if()
 				if(slope==(j.yF()-al.getY())/(j.xF()-al.getX()+15)||slope==(j.yF()-al.getY())/(j.xF()-al.getX()-15)) {
-					aliens.remove(i);
-					i--;
+					if(i!=0) {
+						aliens.remove(i);
+						i--;
+					}
 				}
 			}
+		}
+	}
+	
+	public void done( Graphics window ) {
+		if(aliens.size()==0) {
+			finished=true;
 		}
 	}
 
