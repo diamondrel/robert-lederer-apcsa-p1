@@ -79,23 +79,25 @@ public class AlienHorde
 	}
 	public void removeDeadOne(List<Beam> beams)
 	{
-		for(int i=0;i<aliens.size();i++) {
-			Alien al = aliens.get(i);
-			for(Beam j:beams) {
-				double slope = ((j.yF()-j.yI())/(j.xF()-j.xI()));
-				double numer = (j.yI()-al.getY());
-				double denom = (j.xI()-al.getX());
+		for(Beam j:beams) {
+			for(int i=0;i<aliens.size();i++) {
+				Alien al = aliens.get(i);
+				double numer = ((double)(j.yI()-al.getY()));
+				double pDenom = ((double)(j.xI()-(al.getX()+25)));
+				double nDenom = ((double)(j.xI()-(al.getX()-25)));
+				double slope = ((double)((j.yF()-j.yI())/(j.xF()-j.xI())));
 				System.out.println("beams size: "+beams.size()+"\naliens size: "+aliens.size()+"\n");
 				System.out.println("Alien Number "+i);
 				System.out.println("Slope: "+slope);
-				System.out.println("Slope+0.5: "+(slope+0.25)+" | Slope-0.5: "+(slope-0.25));
-				System.out.println("Alien Slope minus: "+(numer/(denom-1))+"\nAlien Slope plus: "+(numer/(denom+1)));
-				System.out.println("Numerator: "+numer+"Denominator: "+denom);
-				System.out.println("X: "+al.getX()+" | Y: "+al.getY());
+				//System.out.println("Alien Slope minus: "+(numer/(denom-1))+"\nAlien Slope plus: "+(numer/(denom+1)));
+				System.out.println("Numerator: "+numer);
+				System.out.println("pDemominator: "+pDenom+"\nDenominator: "+nDenom);
+				System.out.println("Alien Slope Positive: "+numer/pDenom+" | Alien Slope Negative: "+numer/nDenom);
+				System.out.println("Alien X: "+al.getX()+" | Alien Y: "+al.getY());
+				System.out.println("Beam Xi: "+j.xI()+" | Beam Xf: "+j.xF()+" | Beam Yi: "+j.yI()+" | Beam Yf: "+j.yF());
 				System.out.println("Dead: "+al.dead());
 				if(i!=0&&aliens.size()!=0) {
-					if(((slope+0.25>(numer/(denom+1)))&&(slope-0.25<(numer/(denom+1))))||(slope+0.25>(numer/(denom-1)))&&(slope-0.25<(numer/(denom-1)))){
-						System.out.println(((slope+0.25>(numer/(denom+1)))&&(slope-0.25<(numer/(denom+1))))||(slope+0.25>(numer/(denom-1)))&&(slope-0.25<(numer/(denom-1))));
+					if((slope<(numer/pDenom))&&((numer/nDenom)>slope))/*||(slope+0.25>(numer/(denom-1)))&&(slope-0.25<(numer/(denom-1))))*/{
 						al.kill();
 					}
 				}
