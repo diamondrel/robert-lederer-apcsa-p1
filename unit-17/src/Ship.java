@@ -23,12 +23,12 @@ public class Ship extends MovingThing
 
 	public Ship()
 	{
-		this(10,450,80,80,2,6);
+		this(10,450,80,80,3,6);
 	}
 
 	public Ship(int x, int y)
 	{
-		this(x, y, 80, 80,2,6);
+		this(x, y, 80, 80,3,6);
 	}
 	
 	public Ship(int x, int y, int s)
@@ -112,25 +112,27 @@ public class Ship extends MovingThing
 			tricobalt = System.currentTimeMillis();
 		}
 	}
-	public void phaser(PhaserBanks bank, int width,Boolean fullSpread) {
+	public void phaser(PhaserBanks bank, int width,Boolean fullSpread,int scW) {
 		if (fullSpread&&System.currentTimeMillis()-phaserClock>=10000) {
+			int screen = (int)(scW-(0.2*scW));
 			phaserClock = System.currentTimeMillis();
 			for (int i=0;i<4;i++) {
 				double coin = Math.floor(Math.random()*3);
 				if(coin==1.0) {
-					bank.add(new Beam(this.getX()+25,this.getY()+35,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
+					bank.add(new Beam(this.getX()+25,this.getY()+35,(int)(screen*(Math.random()-0.5))+this.getX(),0,(float)(Math.random()*2+0.5)));
 				}
 				else if (coin==0.0){
-					bank.add(new Beam(this.getX()+55,this.getY()+35,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
+					bank.add(new Beam(this.getX()+55,this.getY()+35,(int)(screen*(Math.random()-0.5))+this.getX(),0,(float)(Math.random()*2+0.5)));
 				}
 				else {
-					bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
+					bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(screen*(Math.random()-0.5))+this.getX(),0,(float)(Math.random()*2+0.5)));
 				}
 			}
 		}	
 		else if(!fullSpread&&System.currentTimeMillis()-emitter>=3000) {
+			int screen = (int)(scW-(0.5*scW));
 			emitter = System.currentTimeMillis();
-			bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
+			bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(screen*(Math.random()-0.5))+this.getX(),0,(float)(Math.random()*2+0.5)));
 		}
 	}
 	

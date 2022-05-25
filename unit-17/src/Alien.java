@@ -13,6 +13,7 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private boolean dead = false;
 
 	public Alien()
 	{
@@ -72,24 +73,33 @@ public class Alien extends MovingThing
 	}
    	public void move(int width, int height)
 	{
-	   if(getX()<0||getX()>width) {
+	   if(getX()<-20||getX()>width+20) {
 		   setY(getY()+120);
 		   setSpeed(-getSpeed());
 		   if(getX()<width/2) {
-			   setX(0);
+			   setX(-10);
 		   }
 		   else {
-			   setX(width);
+			   setX(width+10);
 		   }
 	   }
 	   else {
 		   setX(getX()+speed);
 	   }
 	}
-
+   	
+   	public void kill() {
+   		dead=true;
+   	}
+   	
+   	public boolean dead() {
+   		return dead;
+   	}
+   	
 	public void draw( Graphics window )
 	{
-   	window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+		if(!dead)
+			window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
 	}
 
 	public String toString()

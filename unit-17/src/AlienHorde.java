@@ -22,18 +22,19 @@ public class AlienHorde
 
 	public AlienHorde(int size,int speed,int width)
 	{
-		int r=1;
-		int j=1;
+		int row=0;
+		int x=0;
 		int spacing = width/size;
-		for(int i=1;i<=size;i++,j++) {//iterate through every alien
+		int offset=25;
+		for(int i=1;i<=size;i++,x++) {//iterate through every alien
 			if(spacing<120) {
 				spacing=120;
 			}
-			if(i%16==0) {
-				r++;
-				j=1;
+			if(i%16==1) {
+				row++;
+				x=0;
 			}
-			aliens.add(new Alien(j*spacing+(r%2)*(spacing/2),r*60,1));
+			aliens.add(new Alien(x*spacing+((row+1)%2)*(spacing/2)+offset,(row)*60,0));
 		}
 	}
 
@@ -82,12 +83,23 @@ public class AlienHorde
 			Alien al = aliens.get(i);
 			for(Beam j:beams) {
 				double slope = ((j.yF()-j.yI())/(j.xF()-j.xI()));
-				if(slope+2.0>(j.yI()-al.getY())/(j.xI()-al.getX())&&slope-2.0<(j.yI()-al.getY())/(j.xI()-al.getX())) {
-					if(i!=0) {
-						aliens.remove(i);
-						i--;
+				double numer = (j.yI()-al.getY());
+				double denom = (j.xI()-al.getX());
+				System.out.println("beams size: "+beams.size()+"\naliens size: "+aliens.size()+"\n");
+				System.out.println("Alien Number "+i);
+				System.out.println("Slope: "+slope);
+				System.out.println("Slope+0.5: "+(slope+0.25)+" | Slope-0.5: "+(slope-0.25));
+				System.out.println("Alien Slope minus: "+(numer/(denom-1))+"\nAlien Slope plus: "+(numer/(denom+1)));
+				System.out.println("Numerator: "+numer+"Denominator: "+denom);
+				System.out.println("X: "+al.getX()+" | Y: "+al.getY());
+				System.out.println("Dead: "+al.dead());
+				if(i!=0&&aliens.size()!=0) {
+					if(((slope+0.25>(numer/(denom+1)))&&(slope-0.25<(numer/(denom+1))))||(slope+0.25>(numer/(denom-1)))&&(slope-0.25<(numer/(denom-1)))){
+						System.out.println(((slope+0.25>(numer/(denom+1)))&&(slope-0.25<(numer/(denom+1))))||(slope+0.25>(numer/(denom-1)))&&(slope-0.25<(numer/(denom-1))));
+						al.kill();
 					}
 				}
+				System.out.println("");
 			}
 		}
 	}

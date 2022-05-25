@@ -44,7 +44,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		//instantiate other instance variables
 		//Ship, Alien
-		aliens = new AlienHorde(48,1,wi);
+		aliens = new AlienHorde(16,1,wi);
 		ship = new Ship(wi/2,hei-200);
 		photonTorpedos = new Bullets();
 		bank = new PhaserBanks();
@@ -86,7 +86,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		bank.cleanEmUp();
 		aliens.drawEmAll(graphToBack);
 		aliens.moveEmAll(winWidth,winHeight);
-		aliens.removeDeadOnes(photonTorpedos.getList());;
+		aliens.removeDeadOnes(photonTorpedos.getList());
 		aliens.removeDeadOne(bank.getList());
 //		alienOne.draw(graphToBack);
 //		alienTwo.draw(graphToBack);
@@ -107,7 +107,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		if (keys[5]) {
 			if (advWeapons) {
-				ship.phaser(bank,1,true);
+				ship.phaser(bank,1,true,winWidth);
 			}
 			else
 				ship.torpedo(photonTorpedos,false);
@@ -120,7 +120,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		if (keys[7]) {
 			if(advWeapons)
-				ship.phaser(bank,1,false);
+				ship.phaser(bank,1,false,winWidth);
 			else
 				ship.torpedo(photonTorpedos, false);
 		}
