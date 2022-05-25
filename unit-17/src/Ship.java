@@ -92,7 +92,7 @@ public class Ship extends MovingThing
 		if (fullSpread&&System.currentTimeMillis()-massTricobalt>=10000) {
 			massTricobalt = System.currentTimeMillis();
 			for (int i=0;i<5;i++) {
-				Double angle = Math.atan(2000*Math.random() / (double) this.getY());
+				Double angle = Math.atan(1000*Math.random() / (double) this.getY());
 				int xs = (int) (torpS*Math.sin(angle-(Math.PI/6))+(Math.random()*4)-2)-1;
 				int ys = (int) Math.ceil(torpS*Math.cos(angle+(Math.PI/9))+(Math.random()*4)-2)+2;
 				if(Math.floor(Math.random()*2)<=1.0) 
@@ -103,7 +103,6 @@ public class Ship extends MovingThing
 		}
 		else if(System.currentTimeMillis()-tricobalt>=500) {
 			double coin=Math.floor(Math.random()*3);
-			System.out.println(coin);
 			if (coin <=0.0)
 				torpedoCluster.add(new Ammo(getX()+20,getY()+35,0,(int) Math.ceil(torpS+(Math.random()*4)-2)));
 			else if(coin <=1.0)
@@ -119,19 +118,19 @@ public class Ship extends MovingThing
 			for (int i=0;i<4;i++) {
 				double coin = Math.floor(Math.random()*3);
 				if(coin==1.0) {
-					bank.add(new Beam(this.getX()+25,this.getY()+35,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
+					bank.add(new Beam(this.getX()+25,this.getY()+35,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
 				}
 				else if (coin==0.0){
-					bank.add(new Beam(this.getX()+55,this.getY()+35,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
+					bank.add(new Beam(this.getX()+55,this.getY()+35,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
 				}
 				else {
-					bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
+					bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
 				}
 			}
 		}	
 		else if(!fullSpread&&System.currentTimeMillis()-emitter>=3000) {
 			emitter = System.currentTimeMillis();
-			bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(700*Math.random()),0,(float)(Math.random()*2+0.5)));
+			bank.add(new Beam(this.getX()+40,this.getY()+25,(int)(1920*Math.random()),0,(float)(Math.random()*2+0.5)));
 		}
 	}
 	

@@ -22,20 +22,18 @@ public class AlienHorde
 
 	public AlienHorde(int size,int speed,int width)
 	{
-		int y=1;
+		int r=1;
 		int j=1;
-		int c=1;
-		for(int i=1;i<=size;i++) {//iterate through every alien
-			
-			if(i>size/c) {
-				if(((size/c)*50)>width/3) { //ensure it's not too cramped
-					c++;
-				}
-				y++;
+		int spacing = width/size;
+		for(int i=1;i<=size;i++,j++) {//iterate through every alien
+			if(spacing<120) {
+				spacing=120;
+			}
+			if(i%16==0) {
+				r++;
 				j=1;
 			}
-			add(new Alien(j*60,y*40,speed));
-			j++;
+			aliens.add(new Alien(j*spacing+(r%2)*(spacing/2),r*60,1));
 		}
 	}
 
@@ -48,9 +46,6 @@ public class AlienHorde
 	{
 		for (Alien i:aliens) {
 			i.draw(window);
-		}
-		while(finished) {
-			window.drawString("YOU WIN!!",920,540);
 		}
 		done(window);
 	}
@@ -75,7 +70,8 @@ public class AlienHorde
 			for(Ammo j:shots) {
 				if(j.getY()<al.getY()+20&&j.getY()>al.getY()-20&&j.getX()<al.getX()+20&&j.getX()>al.getX()-20) {
 					aliens.remove(i);
-					i--;
+					if(i!=0)
+						i--;
 				}
 			}
 		}
@@ -85,9 +81,8 @@ public class AlienHorde
 		for(int i=0;i<aliens.size();i++) {
 			Alien al = aliens.get(i);
 			for(Beam j:beams) {
-				int slope = ((j.yF()-j.yI())/(j.xF()-j.xI()));
-				if()
-				if(slope==(j.yF()-al.getY())/(j.xF()-al.getX()+15)||slope==(j.yF()-al.getY())/(j.xF()-al.getX()-15)) {
+				double slope = ((j.yF()-j.yI())/(j.xF()-j.xI()));
+				if(slope+2.0>(j.yI()-al.getY())/(j.xI()-al.getX())&&slope-2.0<(j.yI()-al.getY())/(j.xI()-al.getX())) {
 					if(i!=0) {
 						aliens.remove(i);
 						i--;
