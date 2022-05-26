@@ -3,6 +3,7 @@
 //Name -
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
@@ -22,17 +23,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private AlienHorde aliens;
 	private int winHeight;
 	private int winWidth;
-
-	/* uncomment once you are ready for this part
-	 *
-   private AlienHorde horde;
-	private Bullets shots;
-	*/
-
 	private boolean[] keys;
 	private BufferedImage back;
 	private Bullets photonTorpedos;
 	private PhaserBanks bank;
+	private int alienC=16;
+	private int speed = 1;
+	int round=0;
 	
 	public OuterSpace(int wi, int hei)
 	{
@@ -42,9 +39,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		keys = new boolean[8];
 
-		//instantiate other instance variables
-		//Ship, Alien
-		aliens = new AlienHorde(16,1,wi);
+		aliens = new AlienHorde(alienC,speed,wi);
 		ship = new Ship(wi/2,hei-400);
 		photonTorpedos = new Bullets();
 		bank = new PhaserBanks();
@@ -64,6 +59,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 	public void paint( Graphics window )
 	{
+		if(aliens.list().size()>0) {
 		//set up the double buffering to make the game animation nice and smooth
 		Graphics2D twoDGraph = (Graphics2D)window;
 		//take a snap shop of the current screen and same it as an image
@@ -124,13 +120,35 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			else
 				ship.torpedo(photonTorpedos, false);
 		}
-		//add code to move Ship, Alien, etc.
-
-
-		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
-
-
 		twoDGraph.drawImage(back, null, 0, 0);
+		}
+		else {
+			round++;
+			Graphics2D twoDGraph = (Graphics2D)window;
+			//take a snap shop of the current screen and same it as an image
+			//that is the exact same width and height as the current screen
+			if(back==null)
+			   back = (BufferedImage)(createImage(getWidth(),getHeight()));
+			Graphics graphToBack = back.createGraphics();
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.fillRect(0,0,winWidth,winHeight);
+			graphToBack.setColor(Color.WHITE);
+			graphToBack.setFont(new Font("SansSerif",Font.PLAIN,140));
+			graphToBack.drawString("YOU WIN!!!",winWidth/4,winHeight/3);
+			graphToBack.setFont(new Font("SansSerif",Font.PLAIN,40));
+			graphToBack.drawString("Space for the next level",winWidth/4,winHeight/6);
+			twoDGraph.drawImage(back, null, 0, 0);
+			if(keys[4]){
+				if(round<=4) {
+					alienC+=16;
+				}
+				System.out.println("Alien Count: "+alienC+" | speed: "+speed);
+				if(round%3==0) {
+					speed++;
+				}
+				aliens=new AlienHorde(alienC,speed,winWidth);
+			}
+		}
 	}
 
 
@@ -218,7 +236,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
    		{
    		   Thread.currentThread().sleep(5);
            repaint();
-         }
+        }
       }catch(Exception e)
       {
       }

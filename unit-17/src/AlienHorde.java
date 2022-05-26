@@ -34,7 +34,7 @@ public class AlienHorde
 				row++;
 				x=0;
 			}
-			aliens.add(new Alien(x*spacing+((row+1)%2)*(spacing/2)+offset,(row)*60,0));
+			aliens.add(new Alien(x*spacing+((row+1)%2)*(spacing/2)+offset,(row)*60,speed));
 		}
 	}
 
@@ -48,7 +48,6 @@ public class AlienHorde
 		for (Alien i:aliens) {
 			i.draw(window);
 		}
-		done(window);
 	}
 
 	public void moveEmAll()
@@ -71,8 +70,7 @@ public class AlienHorde
 			for(Ammo j:shots) {
 				if(j.getY()<al.getY()+20&&j.getY()>al.getY()-20&&j.getX()<al.getX()+20&&j.getX()>al.getX()-20) {
 					aliens.remove(i);
-					if(i!=0)
-						i--;
+					i--;
 				}
 			}
 		}
@@ -82,34 +80,28 @@ public class AlienHorde
 		for(Beam j:beams) {
 			for(int i=0;i<aliens.size();i++) {
 				Alien al = aliens.get(i);
-				double numer = ((double)(j.yI()-al.getY()));
-				double pDenom = ((double)(j.xI()-(al.getX()+25)));
-				double nDenom = ((double)(j.xI()-(al.getX()-25)));
-				double slope = ((double)((j.yF()-j.yI())/(j.xF()-j.xI())));
-				System.out.println("beams size: "+beams.size()+"\naliens size: "+aliens.size()+"\n");
-				System.out.println("Alien Number "+i);
-				System.out.println("Slope: "+slope);
-				//System.out.println("Alien Slope minus: "+(numer/(denom-1))+"\nAlien Slope plus: "+(numer/(denom+1)));
-				System.out.println("Numerator: "+numer);
-				System.out.println("pDemominator: "+pDenom+"\nDenominator: "+nDenom);
-				System.out.println("Alien Slope Positive: "+numer/pDenom+" | Alien Slope Negative: "+numer/nDenom);
-				System.out.println("Alien X: "+al.getX()+" | Alien Y: "+al.getY());
-				System.out.println("Beam Xi: "+j.xI()+" | Beam Xf: "+j.xF()+" | Beam Yi: "+j.yI()+" | Beam Yf: "+j.yF());
-				System.out.println("Dead: "+al.dead());
-				if(i!=0&&aliens.size()!=0) {
-					if((slope<(numer/pDenom))&&((numer/nDenom)>slope))/*||(slope+0.25>(numer/(denom-1)))&&(slope-0.25<(numer/(denom-1))))*/{
-						al.kill();
+				double slope = ((-705.0)/(double)(j.xF()-j.xI()));
+				double aSlopeP = (((al.getY()-j.yI())/((al.getX()+25.0)-j.xI())));
+				double aSlopeN = (((al.getY()-j.yI())/((al.getX()-25.0)-j.xI())));
+				/*System.out.println("Alien "+i);
+				System.out.println(j);
+				System.out.println(al);
+				System.out.println("slope: "+slope);
+				System.out.println("pSlope: "+aSlopeP);
+				System.out.println("nSlope: "+aSlopeN);
+				System.out.println("");*/
+				if(aliens.size()!=0||aSlopeP==Double.POSITIVE_INFINITY||aSlopeN==Double.POSITIVE_INFINITY) {
+					if(slope<aSlopeP&&slope>aSlopeN) {
+						aliens.remove(i);
+						i--;
 					}
 				}
-				System.out.println("");
 			}
 		}
 	}
 	
-	public void done( Graphics window ) {
-		if(aliens.size()==0) {
-			finished=true;
-		}
+	public List<Alien> list(){
+		return aliens;
 	}
 
 	public String toString()

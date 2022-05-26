@@ -13,7 +13,6 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
-	private boolean dead = false;
 
 	public Alien()
 	{
@@ -88,18 +87,9 @@ public class Alien extends MovingThing
 	   }
 	}
    	
-   	public void kill() {
-   		dead=true;
-   	}
-   	
-   	public boolean dead() {
-   		return dead;
-   	}
-   	
 	public void draw( Graphics window )
 	{
-		if(!dead)
-			window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
+		window.drawImage(image,getX(),getY(),getWidth(),getHeight(),null);
 	}
 
 	public String toString()

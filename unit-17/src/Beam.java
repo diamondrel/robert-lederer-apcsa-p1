@@ -48,4 +48,7 @@ public class Beam
 	public int yF() {
 		return yfin;
 	}
+	public String toString() {
+		return "xIn: "+xI()+" | yIn: "+yI()+" | xFin: "+xF()+" | yFin: "+yF();
+	}
 }

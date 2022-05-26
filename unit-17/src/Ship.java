@@ -28,7 +28,7 @@ public class Ship extends MovingThing
 
 	public Ship(int x, int y)
 	{
-		this(x, y, 80, 80,3,6);
+		this(x, y, 80, 80,4,6);
 	}
 	
 	public Ship(int x, int y, int s)
