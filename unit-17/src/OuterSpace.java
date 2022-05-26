@@ -123,7 +123,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		twoDGraph.drawImage(back, null, 0, 0);
 		}
 		else {
-			round++;
 			Graphics2D twoDGraph = (Graphics2D)window;
 			//take a snap shop of the current screen and same it as an image
 			//that is the exact same width and height as the current screen
@@ -139,10 +138,11 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			graphToBack.drawString("Space for the next level",winWidth/4,winHeight/6);
 			twoDGraph.drawImage(back, null, 0, 0);
 			if(keys[4]){
+				round++;
 				if(round<=4) {
 					alienC+=16;
 				}
-				System.out.println("Alien Count: "+alienC+" | speed: "+speed);
+				System.out.println("Alien Count: "+alienC+" | speed: "+speed+" | round: "+round);
 				if(round%3==0) {
 					speed++;
 				}
