@@ -23,12 +23,12 @@ public class Ship extends MovingThing
 
 	public Ship()
 	{
-		this(10,450,80,80,3,6);
+		this(10,450,80,80,5,6);
 	}
 
 	public Ship(int x, int y)
 	{
-		this(x, y, 80, 80,4,6);
+		this(x, y, 80, 80,5,6);
 	}
 	
 	public Ship(int x, int y, int s)
@@ -75,16 +75,16 @@ public class Ship extends MovingThing
 	public void move(String direction)
 	{
 		if (direction=="L") {
-			setX(getX()-(getSpeed()/2));
+			setX(getX()-getSpeed());
 		}
 		if (direction=="R") {
-			setX(getX()+(getSpeed()/2));
+			setX(getX()+getSpeed());
 		}
 		if (direction=="N") {
-			setY(getY()-(getSpeed()/2));
+			setY(getY()-getSpeed());
 		}
 		if (direction=="S") {
-			setY(getY()+(getSpeed()/2));
+			setY(getY()+getSpeed());
 		}
 	}
 	

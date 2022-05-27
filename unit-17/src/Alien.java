@@ -13,6 +13,8 @@ public class Alien extends MovingThing
 {
 	private int speed;
 	private Image image;
+	private boolean passedShip=false;
+	private int hei;
 
 	public Alien()
 	{
@@ -72,6 +74,7 @@ public class Alien extends MovingThing
 	}
    	public void move(int width, int height)
 	{
+   		hei=height;
 	   if(getX()<-20||getX()>width+20) {
 		   setY(getY()+120);
 		   setSpeed(-getSpeed());
@@ -83,9 +86,13 @@ public class Alien extends MovingThing
 		   }
 	   }
 	   else {
-		   setX(getX()+speed);
+		   setX((getX()+speed));
 	   }
 	}
+   	
+   	public boolean passedShip() {
+   		return getY()>=hei;
+   	}
    	
 	public void draw( Graphics window )
 	{

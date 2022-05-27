@@ -75,6 +75,17 @@ public class AlienHorde
 			}
 		}
 	}
+	public boolean getAlienWin(int height) {
+		boolean result = false;
+		for(Alien j:aliens) {
+			System.out.println(j.getY()+". "+j.getX());
+			if(j.passedShip()) {
+				result=true;
+				break;
+			}
+		}
+		return result;
+	}
 	public void removeDeadOne(List<Beam> beams)
 	{
 		for(Beam j:beams) {
