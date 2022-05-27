@@ -155,6 +155,24 @@ public class PictureTester
     mark.backgroundSwap();
     mark.explore();
   }
+  public static void testSteganography()
+  {
+    Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
+    Picture apple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\apple_icon.jpg");
+    beach.steganography(apple);
+    beach.explore();
+  }
+  public static void beachExplore() {
+	  Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
+	  beach.explore();
+	  Picture apple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\apple_icon.jpg");
+	  apple.explore();
+  }
+  public static void opacity() {
+	  Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
+	  beach.opacitize();
+	  beach.explore();
+  }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -189,6 +207,9 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
-	  testBackgroundSwap();
+//	  testBackgroundSwap();
+//	  testSteganography();
+	  beachExplore();
+//	  opacity();
   }
 }

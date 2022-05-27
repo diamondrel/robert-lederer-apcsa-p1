@@ -500,6 +500,80 @@ public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int 
 	    	}
 	    }
 	  }
+  public void opacitize() {
+	  for(int i=0;i<240;i++) {
+		  getPixels2D()[i][i].setAlpha(211);
+	  }
+	  System.out.println(getPixels2D()[50][50].getAlpha());
+  }
+  public void steganography(Picture p) {
+	Pixel stegPixel = null;
+	Pixel pixPixel = null;
+	int rTop=-1;
+	int rBottom=-1;
+	int cLeft=-1;
+	int cRight=-1;
+    Pixel[][] pPixels = p.getPixels2D();
+    Pixel[][] sPixels = getPixels2D();
+	int row=0;
+	while(rTop==-1) {
+		for(int col=0;col<p.getPixels().length;col++) {
+			if(pPixels[row][col].getAverage()<100) {
+				rTop = row;
+			}
+		}
+		row++;
+	}
+	row=pPixels.length;
+	while(rBottom==-1) {
+		for(int col=0;col<p.getPixels().length;col++) {
+			if(pPixels[row][col].getAverage()<100) {
+				rBottom = row;
+			}
+		}
+		row--;
+	}
+	int col=0;
+	while(cRight==-1) {
+		for(row=0;row<pPixels.length;row++) {
+			if(pPixels[row][col].getAverage()<100) {
+				cRight = col;
+			}
+		}
+		col++;
+	}
+	col=p.getPixels().length;
+	while(cLeft==-1) {
+		for(row=0;row<pPixels.length;row++) {
+			if(pPixels[row][col].getAverage()<100) {
+				cLeft = col;
+			}
+		}
+		col--;
+	}
+	sPixels[0][0].setRed(cLeft);
+	sPixels[0][0].setGreen(cRight);
+	sPixels[0][0].setBlue(rTop);
+	sPixels[0][1].setRed(rBottom);
+	boolean startWhite = pPixels[rTop][cLeft].getAverage()>100;
+	Color startCol;
+	if(startWhite) {
+		sPixels[0][2].setColor(new Color(200,200,200));
+		startCol=new Color(255,255,255);
+	}
+	else{
+		sPixels[0][2].setColor(new Color(100,100,100));
+		startCol=new Color(0,0,0);
+	}
+	
+	for(row=rTop;row<rBottom;row++) {
+		for(col=cLeft;cLeft<cRight;col++) {
+			if(startCol==new Color(255,255,255)) {
+				
+			}
+		}
+	}
+}
   
   
   /* Main method for testing - each class in Java can have a main 
