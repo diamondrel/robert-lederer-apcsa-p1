@@ -517,16 +517,17 @@ public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int 
     Pixel[][] sPixels = getPixels2D();
 	int row=0;
 	while(rTop==-1) {
-		for(int col=0;col<p.getPixels().length;col++) {
+		for(int col=0;col<pPixels[0].length;col++) {
+//			System.out.println("Row: "+row+" | Col: "+col+" | Pixel Length: "+pPixels[0].length);
 			if(pPixels[row][col].getAverage()<100) {
 				rTop = row;
 			}
 		}
 		row++;
 	}
-	row=pPixels.length;
+	row=pPixels.length-1;
 	while(rBottom==-1) {
-		for(int col=0;col<p.getPixels().length;col++) {
+		for(int col=0;col<pPixels[0].length;col++) {
 			if(pPixels[row][col].getAverage()<100) {
 				rBottom = row;
 			}
@@ -534,19 +535,19 @@ public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int 
 		row--;
 	}
 	int col=0;
-	while(cRight==-1) {
-		for(row=0;row<pPixels.length;row++) {
-			if(pPixels[row][col].getAverage()<100) {
-				cRight = col;
-			}
-		}
-		col++;
-	}
-	col=p.getPixels().length;
 	while(cLeft==-1) {
 		for(row=0;row<pPixels.length;row++) {
 			if(pPixels[row][col].getAverage()<100) {
 				cLeft = col;
+			}
+		}
+		col++;
+	}
+	col=pPixels[0].length-1;
+	while(cRight==-1) {
+		for(row=0;row<pPixels.length;row++) {
+			if(pPixels[row][col].getAverage()<100) {
+				cRight = col;
 			}
 		}
 		col--;
@@ -554,26 +555,58 @@ public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int 
 	sPixels[0][0].setRed(cLeft);
 	sPixels[0][0].setGreen(cRight);
 	sPixels[0][0].setBlue(rTop);
-	sPixels[0][1].setRed(rBottom);
-	boolean startWhite = pPixels[rTop][cLeft].getAverage()>100;
-	Color startCol;
-	if(startWhite) {
+	sPixels[1][0].setRed(rBottom);
+	Color checkColor;
+	if(pPixels[rTop][cLeft].getAverage()>100) {
 		sPixels[0][2].setColor(new Color(200,200,200));
-		startCol=new Color(255,255,255);
+		checkColor=new Color(255,255,255);
 	}
 	else{
 		sPixels[0][2].setColor(new Color(100,100,100));
-		startCol=new Color(0,0,0);
+		checkColor=new Color(0,0,0);
 	}
-	
+	int colPlace = 1;
+	int colorRun=0;
+	int sRow=1;
+	int sCol=0;
 	for(row=rTop;row<rBottom;row++) {
-		for(col=cLeft;cLeft<cRight;col++) {
-			if(startCol==new Color(255,255,255)) {
-				
+		boolean cont=true;
+//		System.out.println("cLeft: "+cLeft+" cRight: "+cRight+" col: "+col);
+		for(col=cLeft;col<cRight;col++) {
+			if(cont) {
+				if(checkColor.equals(pPixels[row][col].getColor())) {
+					colorRun++;
+					System.out.println("Row: "+sRow+" | Column: "+sCol+" | Run: "+colorRun+" | Place: "+colPlace);
+				}
+				else if(colorRun!=0){
+					if(colPlace%3==0) {
+						sPixels[sRow][sCol].setRed(colorRun);
+					}
+					else if(colPlace%3==1) {
+						sPixels[sRow][sCol].setGreen(colorRun);
+					}
+					else {
+						sPixels[sRow][sCol].setBlue(colorRun);
+						sRow++;
+					}
+					if(sRow==480) {
+						sRow=0;
+						sCol++;
+					}
+					if(checkColor.getRed()>pPixels[row][col].getRed()) {
+						checkColor=pPixels[row][col].getColor();
+					}
+					colPlace++;
+					colorRun=0;
+				}
 			}
 		}
 	}
 }
+  //make it so each pixel has blue and green used for color run info, and red is only ever <100 and directs to the next pixel
+  public static void decrypt() {
+	  
+  }
   
   
   /* Main method for testing - each class in Java can have a main 
