@@ -585,6 +585,7 @@ public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int 
 			}
 		}
 		takenRows.add(bestRow);
+		sPixels[bestRow][320].setColor(pixel);
 	}
 }
   //make it so each pixel has blue and green used for color run info, and red is only ever <100 and directs to the next pixel

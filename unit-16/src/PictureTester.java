@@ -221,8 +221,8 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
 //	  testBackgroundSwap();
-//	  testSteganography();
-	  laptopBeachExplore();
+	  testSteganography();
+//	  laptopBeachExplore();
 //	  beachExplore();
 //	  opacity();
   }
