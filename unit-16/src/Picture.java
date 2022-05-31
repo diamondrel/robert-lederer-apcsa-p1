@@ -507,100 +507,84 @@ public void copyTwo(Picture fromPic, int startRow, int startCol,int stopRow,int 
 	  System.out.println(getPixels2D()[50][50].getAlpha());
   }
   public void steganography(Picture p) {
-	Pixel stegPixel = null;
-	Pixel pixPixel = null;
 	int rTop=-1;
 	int rBottom=-1;
 	int cLeft=-1;
 	int cRight=-1;
     Pixel[][] pPixels = p.getPixels2D();
     Pixel[][] sPixels = getPixels2D();
-	int row=0;
-	while(rTop==-1) {
+	int tRow=0;
+	int bRow=pPixels.length-1;
+	while(rTop==-1&&rBottom==-1) {
 		for(int col=0;col<pPixels[0].length;col++) {
-//			System.out.println("Row: "+row+" | Col: "+col+" | Pixel Length: "+pPixels[0].length);
-			if(pPixels[row][col].getAverage()<100) {
-				rTop = row;
+//			System.out.println("Row: "+row+" | Col: "+tCol+" | Pixel Length: "+pPixels[0].length);
+			if(pPixels[tRow][col].getAverage()<100&&rTop==-1) {
+				rTop = tRow;
+			}
+			if(pPixels[bRow][col].getAverage()<100&&rBottom==-1) {
+				rBottom = bRow;
 			}
 		}
-		row++;
+		tRow++;
+		bRow--;
 	}
-	row=pPixels.length-1;
-	while(rBottom==-1) {
-		for(int col=0;col<pPixels[0].length;col++) {
-			if(pPixels[row][col].getAverage()<100) {
-				rBottom = row;
+	int lCol=0;
+	int rCol=pPixels[0].length-1;
+	while(cLeft==-1&&cRight==-1) {
+		for(int row=0;row<pPixels.length;row++) {
+			if(pPixels[row][lCol].getAverage()<100&&cLeft==-1) {
+				cLeft = lCol;
+			}
+			if(pPixels[row][rCol].getAverage()<100&&cRight==-1) {
+				cRight = rCol;
 			}
 		}
-		row--;
+		lCol++;
+		rCol--;
 	}
-	int col=0;
-	while(cLeft==-1) {
-		for(row=0;row<pPixels.length;row++) {
-			if(pPixels[row][col].getAverage()<100) {
-				cLeft = col;
-			}
-		}
-		col++;
-	}
-	col=pPixels[0].length-1;
-	while(cRight==-1) {
-		for(row=0;row<pPixels.length;row++) {
-			if(pPixels[row][col].getAverage()<100) {
-				cRight = col;
-			}
-		}
-		col--;
-	}
-	sPixels[0][0].setRed(cLeft);
+	/*sPixels[0][0].setRed(cLeft);
 	sPixels[0][0].setGreen(cRight);
 	sPixels[0][0].setBlue(rTop);
-	sPixels[1][0].setRed(rBottom);
-	Color checkColor;
-	if(pPixels[rTop][cLeft].getAverage()>100) {
-		sPixels[0][2].setColor(new Color(200,200,200));
-		checkColor=new Color(255,255,255);
-	}
-	else{
-		sPixels[0][2].setColor(new Color(100,100,100));
-		checkColor=new Color(0,0,0);
-	}
-	int colPlace = 1;
-	int colorRun=0;
-	int sRow=1;
-	int sCol=0;
-	for(row=rTop;row<rBottom;row++) {
-		boolean cont=true;
-//		System.out.println("cLeft: "+cLeft+" cRight: "+cRight+" col: "+col);
-		for(col=cLeft;col<cRight;col++) {
-			if(cont) {
-				if(checkColor.equals(pPixels[row][col].getColor())) {
-					colorRun++;
-					System.out.println("Row: "+sRow+" | Column: "+sCol+" | Run: "+colorRun+" | Place: "+colPlace);
-				}
-				else if(colorRun!=0){
-					if(colPlace%3==0) {
-						sPixels[sRow][sCol].setRed(colorRun);
-					}
-					else if(colPlace%3==1) {
-						sPixels[sRow][sCol].setGreen(colorRun);
-					}
-					else {
-						sPixels[sRow][sCol].setBlue(colorRun);
-						sRow++;
-					}
-					if(sRow==480) {
-						sRow=0;
-						sCol++;
-					}
-					if(checkColor.getRed()>pPixels[row][col].getRed()) {
-						checkColor=pPixels[row][col].getColor();
-					}
-					colPlace++;
-					colorRun=0;
-				}
+	sPixels[1][0].setRed(rBottom);*/
+	Color checkColor=new Color(0,0,0);
+	List<Integer> runs=new ArrayList<Integer>();
+	for(int col=cLeft;col<cRight;col++) {
+		int run=0;
+		for(int row=rTop;row<rBottom;row++) {
+			if(pPixels[row][col].getColor().equals(checkColor)) {
+				run++;
+			}
+			else {
+				if(run!=0)
+					runs.add(run);
+				if(checkColor.equals(new Color(255,255,255))) 
+					checkColor=new Color(0,0,0);
+				else
+					checkColor=new Color(255,255,255);
 			}
 		}
+	}
+	List<Integer> takenRows = new ArrayList<Integer>();
+	Color pixel=new Color(runs.get(0),runs.get(1),runs.get(2));
+	int bestRow=255;
+	for(int i=0;i<sPixels.length;i++) {
+		if(sPixels[i][320].getAverage()<(pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3) {
+			bestRow=i;
+		}
+	}
+	takenRows.add(bestRow);
+	for(int i=4;i<takenRows.size();i+=2) {
+		int r=takenRows.get(takenRows.size()-1);
+		int g=runs.get(i-1);
+		int b=runs.get(i);
+		pixel=new Color(r,g,b);
+		bestRow=255;
+		for(int j=0;j<sPixels.length;j++) {
+			if(sPixels[i][320].getAverage()<(pixel.getRed()+pixel.getGreen()+pixel.getBlue())/3) {
+				bestRow=i;
+			}
+		}
+		takenRows.add(bestRow);
 	}
 }
   //make it so each pixel has blue and green used for color run info, and red is only ever <100 and directs to the next pixel

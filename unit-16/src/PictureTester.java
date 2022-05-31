@@ -168,6 +168,19 @@ public class PictureTester
 	  Picture apple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\apple_icon.jpg");
 	  apple.explore();
   }
+  public static void laptopTestSteganography()
+  {
+	    Picture beach = new Picture("src\\beach.jpg");
+	    Picture apple = new Picture("src\\apple_icon.jpg");
+	    beach.steganography(apple);
+	    beach.explore();
+  }
+  public static void laptopBeachExplore() {
+		  Picture beach = new Picture("src\\beach.jpg");
+		  beach.explore();
+		  Picture apple = new Picture("src\\apple_icon.jpg");
+		  apple.explore();
+  }
   public static void opacity() {
 	  Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
 	  beach.opacitize();
@@ -208,7 +221,8 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
 //	  testBackgroundSwap();
-	  testSteganography();
+//	  testSteganography();
+	  laptopBeachExplore();
 //	  beachExplore();
 //	  opacity();
   }
