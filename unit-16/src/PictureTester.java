@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This class contains class (static) methods
  * that will help you test the Picture class 
@@ -165,8 +168,8 @@ public class PictureTester
   public static void beachExplore() {
 	  Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
 	  beach.explore();
-	  Picture apple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\apple_icon.jpg");
-	  apple.explore();
+	  //Picture apple = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\apple_icon.jpg");
+	  //apple.explore();
   }
   public static void laptopTestSteganography()
   {
@@ -174,17 +177,32 @@ public class PictureTester
 	    Picture apple = new Picture("src\\apple_icon.jpg");
 	    beach.steganography(apple);
 	    beach.explore();
+	    beach.decrypt();
+  }
+  public static void laptopTestSteganographyTwo()
+  {
+	    Picture beach = new Picture("src\\beach.jpg");
+	    Picture msg = new Picture("src\\msg.jpg");
+	    beach.steganography(msg);
+	    beach.explore();
+	    beach.decrypt();
   }
   public static void laptopBeachExplore() {
 		  Picture beach = new Picture("src\\beach.jpg");
 		  beach.explore();
-		  Picture apple = new Picture("src\\apple_icon.jpg");
-		  apple.explore();
+//		  Picture apple = new Picture("src\\apple_icon.jpg");
+//		  apple.explore();
   }
   public static void opacity() {
 	  Picture beach = new Picture("C:\\Users\\ledererr8484\\Desktop\\apcsa-github\\unit-16\\src\\beach.jpg");
 	  beach.opacitize();
 	  beach.explore();
+  }
+  public static void manualDecode() {
+	  Picture beach = new Picture("src\\beach.jpg");
+	  Picture apple = new Picture("src\\apple_icon.jpg");
+	beach.decryptTwo();
+  	beach.manualSten(apple);
   }
   
   /** Main method for testing.  Every class can have a main
@@ -221,9 +239,13 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
 //	  testBackgroundSwap();
-	  testSteganography();
-//	  laptopBeachExplore();
+//	  testSteganography();
+	  laptopBeachExplore();
+	  laptopTestSteganography();
+	  laptopTestSteganographyTwo();
+//	  manualDecode();
 //	  beachExplore();
 //	  opacity();
+//	  testThing();
   }
 }
